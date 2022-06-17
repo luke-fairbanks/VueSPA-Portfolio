@@ -1,5 +1,5 @@
 ## Hello, this is my - Vue - Single Page App Portfolio
-### [Live Website](https://luke-fairbanks.herokuapp.com)
+###  [![Netlify Status](https://api.netlify.com/api/v1/badges/5346886c-e129-413b-85a3-ac422f65eceb/deploy-status)](https://app.netlify.com/sites/lukefairbanks/deploys) [Live Website](https://lukefairbanks.netlify.app)
 
 To get started:
 
