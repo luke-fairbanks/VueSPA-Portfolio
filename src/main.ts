@@ -13,12 +13,12 @@ import { initializeApp } from 'firebase/app'
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: 'AIzaSyCC-XHHVG54bD2z6-C7p-CHaDWBru2XXag',
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: 'luke-fairbanks-portfolio.firebaseapp.com',
   projectId: 'luke-fairbanks-portfolio',
   storageBucket: 'luke-fairbanks-portfolio.appspot.com',
   messagingSenderId: '261899530731',
-  appId: '1:261899530731:web:6a480b7982d89bdcb969ae',
+  appId: process.env.FIREBASE_APP_ID,
   measurementId: 'G-6XM1P4FGMZ'
 }
 
