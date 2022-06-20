@@ -58,6 +58,8 @@ export function saveImages (data:FileList, toDoc: string) {
 
 // Returning picture URL
 export const picUrl = (name: any, id: string, index: number) => {
+  console.log('LOADED --> ' + loadedImages)
+  console.log('SOURCES --> ' + loadedImgSources)
   const storage = getStorage()
   getDownloadURL(ref(storage, 'portfolioImages/' + name))
     .then((path) => {
@@ -68,10 +70,10 @@ export const picUrl = (name: any, id: string, index: number) => {
       // if it is, assign it to image already stored in cache
       // if not, assign it to new download url
       if (imgIndex !== -1) {
-        imageElement.style.backgroundImage = loadedImages[imgIndex].src
+        document.getElementById(id)?.setAttribute('style', `background-image: url(${loadedImages[imgIndex].src})`)
+        console.log('image found in list!')
       } else {
-        // document.getElementById(id)?.setAttribute('style', `background-image: url(${path})`)
-        imageElement.style.backgroundImage = `url(${path})`
+        document.getElementById(id)?.setAttribute('style', `background-image: url(${path})`)
       }
       if (index === 0) {
         imageElement.style.display = 'block'

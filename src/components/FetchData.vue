@@ -450,7 +450,7 @@
 <script setup lang="ts">
 import { fetchData, picUrl, loadImages } from '../scripts/db'
 import { DocumentData } from 'firebase/firestore'
-import { defineProps, onMounted } from 'vue'
+import { defineProps, onBeforeMount, onMounted } from 'vue'
 import { getAuth, signOut } from 'firebase/auth'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -463,9 +463,12 @@ const props = defineProps<{
     doc: string
 }>()
 
+onBeforeMount(async () => {
+  await loadImages()
+})
+
 // Retrieve data
 const snapshot = await fetchData(props.doc)
-await loadImages()
 const posts: DocumentData[] = []
 snapshot.forEach((doc) => {
   posts.push(doc.data())
