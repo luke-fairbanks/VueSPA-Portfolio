@@ -8,8 +8,7 @@ const db = getFirestore(app)
 // Fetching data
 export async function fetchData (toDoc: string) {
   const querySnapshot = await getDocs(collection(db, toDoc))
-  const imagesLoaded = await loadImages()
-  return { querySnapshot, imagesLoaded }
+  return querySnapshot
 }
 
 // Send data to Firestore
@@ -36,24 +35,6 @@ function generateId (len: any) {
   return Array.from(arr, dec2hex).join('')
 }
 
-// Returning picture URL
-export const picUrl = (name: any, id: string, index: number) => {
-  const storage = getStorage()
-  getDownloadURL(ref(storage, 'portfolioImages/' + name))
-    .then((path) => {
-      // Promise.resolve(path)
-      document.getElementById(id)?.setAttribute('style', `background-image: url(${path})`)
-      const image = new Image()
-      image.src = path
-      const imageElement = document.getElementById(id) as HTMLElement
-      imageElement.style.backgroundImage = `background-image: url(${image.src})`
-      if (index === 0) {
-        imageElement.style.display = 'block'
-      }
-    })
-  return 'none'
-}
-
 // Save image to firestore
 export function saveImages (data:FileList, toDoc: string) {
   const imageNames: string[] = []
@@ -71,36 +52,36 @@ export function saveImages (data:FileList, toDoc: string) {
         console.log(snapshot)
       })
     imageNames.push(imageSavePath)
-    // // format image and name for ajax POST
-    // const imageData = new FormData()
-    // imageData.append('file', data[i])
-    // imageData.append('imagePath', imageSavePath)
-    // // get path and POST
-    // const path = '/postimage'
-    // $.ajax({
-    //   async: false,
-    //   url: path,
-    //   type: 'POST',
-    //   data: imageData,
-    //   cache: false,
-    //   contentType: false,
-    //   processData: false
-    // })
-    //   .done(function (data) {
-    //     // if successful, include image name in database
-    //     alert(data + 'success')
-    //     imageNames.push(imageSavePath)
-    //     console.log('added!')
-    //   })
-    //   .fail(function (errorMsg) {
-    //     // if unsuccessful, do not include name to avoid bugs later
-    //     alert(errorMsg + 'error')
-    //   })
-    // console.log(imageNames)
   }
   return imageNames
 }
 
+// Returning picture URL
+export const picUrl = (name: any, id: string, index: number) => {
+  const storage = getStorage()
+  getDownloadURL(ref(storage, 'portfolioImages/' + name))
+    .then((path) => {
+      // define our image element
+      const imageElement = document.getElementById(id) as HTMLElement
+      // check if path in loaded images
+      const imgIndex = loadedImgSources.indexOf(path)
+      // if it is, assign it to image already stored in cache
+      // if not, assign it to new download url
+      if (imgIndex !== -1) {
+        imageElement.style.backgroundImage = loadedImages[imgIndex].src
+      } else {
+        // document.getElementById(id)?.setAttribute('style', `background-image: url(${path})`)
+        imageElement.style.backgroundImage = `url(${path})`
+      }
+      if (index === 0) {
+        imageElement.style.display = 'block'
+      }
+    })
+  return 'none'
+}
+
+const loadedImages: HTMLImageElement[] = []
+const loadedImgSources: string[] = []
 // Load all images
 export async function loadImages () {
   const storage = getStorage()
@@ -116,6 +97,8 @@ export async function loadImages () {
                   const img = new Image()
                   img.src = path
                   console.log(path)
+                  loadedImages.push(img)
+                  loadedImgSources.push(img.src)
                 })
             })
           })

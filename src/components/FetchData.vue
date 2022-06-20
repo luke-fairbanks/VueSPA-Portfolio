@@ -465,8 +465,9 @@ const props = defineProps<{
 
 // Retrieve data
 const snapshot = await fetchData(props.doc)
+await loadImages()
 const posts: DocumentData[] = []
-snapshot.querySnapshot.forEach((doc) => {
+snapshot.forEach((doc) => {
   posts.push(doc.data())
 })
 
