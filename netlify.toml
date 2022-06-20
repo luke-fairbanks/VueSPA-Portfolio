@@ -1,0 +1,15 @@
+
+
+# The following redirect is intended for use with most SPAs
+# that handle routing internally.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[context.production]
+  enviroment = { API_KEY = 'AIzaSyCC-XHHVG54bD2z6-C7p-CHaDWBru2XXag', APP_ID = '1:261899530731:web:6a480b7982d89bdcb969ae'}
+
+#plugins
+[[plugins]]
+package = "netlify-plugin-inline-functions-env"

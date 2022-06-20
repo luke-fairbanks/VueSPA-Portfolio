@@ -3,7 +3,7 @@
 
     <div class="image-nav-wrapper">
         <span class="arrow left"> <i v-on:click="plusSlides(-1)" class="fas fa-chevron-left"></i> </span>
-        <div class="carousel-item fade-up slide {{ image }}" :class="'slide'+$props.dataIndex" v-for="(image, index) in $props.images" :id="$props.dataIndex+'image'+index" :inner-h-t-m-l="picUrl(image, `${$props.dataIndex}image${index}`, index)" :key="index"></div>
+        <div class="carousel-item fade-up slide" :class="'slide'+$props.dataIndex" v-for="(image, index) in $props.images" :id="$props.dataIndex+'image'+index" :inner-h-t-m-l="picUrl(image, `${$props.dataIndex}image${index}`, index)" :key="index"></div>
         <span class="arrow right"> <i v-on:click="plusSlides(1)" class="fas fa-chevron-right"></i> </span>
     </div>
     <div class="dot-wrapper">

@@ -3,6 +3,11 @@
         <button @click="logout"> <i class="fas fa-sign-out-alt"></i> </button>
         <PostModal :modal-active="false" :doc="props.doc"></PostModal>
     </div>
+    <div class="overlay-image-wrapper">
+      <div class="overlay-bkg"></div>
+      <div class="overlay-exit">X</div>
+      <div class="overlay-image"></div>
+    </div>
     <div class="post-wrapper">
       <div v-for="(post,index) in posts" :key="index+posts.length" class="item-wrapper" :class="(index+1)%2==0 ? 'right' : 'left'">
         <div class="item" :id="post.title">
@@ -339,6 +344,90 @@
     background-color: transparent;
   }
 }
+.overlay-image-wrapper{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  z-index: 9999999;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.418);
+  // display: none;
+  visibility: hidden;
+  transition: visibility 0s ;
+  &.visible{
+    // display: block;.
+    visibility: visible;
+  }
+  .overlay-image{
+      &.animation1{
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+      &.animation2{
+        opacity: 1;
+        animation: 2s swipe-left-down forwards;
+        @keyframes swipe-left-down {
+          0%{
+            transform: translate(80vw, -50%);
+          }
+          49%{
+            transform: translate(-180vw, -50%);
+          }
+          50%{
+            transform: translate(-50%, 80vh);
+          }
+          100%{
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+      &.animation3{
+        animation: 1s spiral-up forwards;
+        @keyframes spiral-up {
+          0%{
+            transform: translate(-50%, -50%) scale(.2);
+            opacity: .2;
+          }
+          100%{
+            transform: translate(-50%, -50%) scale(1) rotate(720deg);
+            opacity: 1;
+          }
+        }
+      }
+      &.animation4{
+        //Would be cool to have it look like its pushing out of the original picture
+
+      }
+    }
+  .overlay-bkg{
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+  }
+  .overlay-image{
+    width: 80vw;
+    height: 45vw;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(.7);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 3;
+    opacity: .5;
+    transition: visibility 0s, transform .3s, opacity .3s ease;
+  }
+  .overlay-exit{
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-66px, 30px);
+    font-size: 3em;
+    font-weight: bolder;
+    cursor: pointer;
+  }
+}
 @media (min-width: 501px) {
   .description .year-mobile{
     display: none;
@@ -349,12 +438,11 @@
 <script setup lang="ts">
 import { fetchData, picUrl } from '../scripts/db'
 import { DocumentData } from 'firebase/firestore'
-import { defineProps } from 'vue'
+import { defineProps, onMounted } from 'vue'
 import { getAuth, signOut } from 'firebase/auth'
 import router from '@/router'
 import PostModal from './PostModal.vue'
 import ImageCarousel from './ImageCarousel.vue'
-// import DivImageBackground from './DivImageBackground.vue'
 
 const props = defineProps<{
     doc: string
@@ -382,4 +470,24 @@ function logout () {
     console.log(error)
   })
 }
+
+onMounted(() => {
+  const overlay = document.querySelector('.overlay-image-wrapper') as HTMLElement
+  const overlayImage = document.querySelector('.overlay-image') as HTMLElement
+  const images = document.querySelectorAll('.carousel-item, .image')
+  images.forEach((image, index) => {
+    image.addEventListener('click', function () {
+      overlay.classList.add('visible')
+      const randomAnimation = `animation${Math.floor(Math.random() * 4) + 1}`
+      overlayImage.classList.add(randomAnimation)
+      overlayImage.style.backgroundImage = image.style.backgroundImage
+      document.querySelectorAll('.overlay-bkg, .overlay-exit').forEach((item) => {
+        item.addEventListener('click', function () {
+          overlay.classList.remove('visible')
+          overlayImage.classList.remove(randomAnimation)
+        })
+      })
+    })
+  })
+})
 </script>
