@@ -448,25 +448,29 @@
 </style>
 
 <script setup lang="ts">
-import { fetchData, picUrl } from '../scripts/db'
+import { fetchData, picUrl, loadImages } from '../scripts/db'
 import { DocumentData } from 'firebase/firestore'
 import { defineProps, onMounted } from 'vue'
 import { getAuth, signOut } from 'firebase/auth'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import router from '@/router'
 import PostModal from './PostModal.vue'
 import ImageCarousel from './ImageCarousel.vue'
-import { computed } from '@vue/reactivity'
 
+// Define props
 const props = defineProps<{
     doc: string
 }>()
 
+// Retrieve data
 const snapshot = await fetchData(props.doc)
 const posts: DocumentData[] = []
-snapshot.forEach((doc) => {
+snapshot.querySnapshot.forEach((doc) => {
   posts.push(doc.data())
 })
 
+// Check if logged in
 const auth = getAuth()
 let loggedIn: boolean
 if (auth.currentUser) {
@@ -475,6 +479,7 @@ if (auth.currentUser) {
   loggedIn = false
 }
 
+// Log out user
 function logout () {
   signOut(auth).then(() => {
     router.push('/')
@@ -484,6 +489,7 @@ function logout () {
   })
 }
 
+// Add the click event for overlay and styles for each image
 onMounted(() => {
   const overlay = document.querySelector('.overlay-image-wrapper') as HTMLElement
   const overlayImage = document.querySelector('.overlay-image') as HTMLElement

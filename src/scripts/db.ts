@@ -1,15 +1,18 @@
-import { getFirestore, collection, getDocs, DocumentData, addDoc, doc } from 'firebase/firestore'
-import { getStorage, getDownloadURL, ref, getBlob, StorageReference, uploadBytes } from 'firebase/storage'
+import { getFirestore, collection, getDocs, DocumentData, addDoc, doc, QuerySnapshot } from 'firebase/firestore'
+import { getStorage, getDownloadURL, ref, getBlob, StorageReference, uploadBytes, listAll } from 'firebase/storage'
 import { app } from '@/main'
 import $ from 'jquery'
 // Initialize Firebase
 const db = getFirestore(app)
 
+// Fetching data
 export async function fetchData (toDoc: string) {
   const querySnapshot = await getDocs(collection(db, toDoc))
-  return querySnapshot
+  const imagesLoaded = await loadImages()
+  return { querySnapshot, imagesLoaded }
 }
 
+// Send data to Firestore
 export async function postData (toDoc:string, title:string, titleLink: string, desc: string, year: BigInteger, skills: Array<string>, imageNames: Array<string>) {
   const docData = {
     title: title,
@@ -32,6 +35,8 @@ function generateId (len: any) {
   window.crypto.getRandomValues(arr)
   return Array.from(arr, dec2hex).join('')
 }
+
+// Returning picture URL
 export const picUrl = (name: any, id: string, index: number) => {
   const storage = getStorage()
   getDownloadURL(ref(storage, 'portfolioImages/' + name))
@@ -49,6 +54,7 @@ export const picUrl = (name: any, id: string, index: number) => {
   return 'none'
 }
 
+// Save image to firestore
 export function saveImages (data:FileList, toDoc: string) {
   const imageNames: string[] = []
   const storage = getStorage()
@@ -94,3 +100,27 @@ export function saveImages (data:FileList, toDoc: string) {
   }
   return imageNames
 }
+
+// Load all images
+export async function loadImages () {
+  const storage = getStorage()
+  const listRef = ref(storage, 'portfolioImages/')
+  listAll(listRef)
+    .then((res) => {
+      res.prefixes.forEach((folderRef) => {
+        listAll(folderRef)
+          .then((response) => {
+            response.items.forEach((itemRef) => {
+              getDownloadURL(itemRef)
+                .then((path) => {
+                  const img = new Image()
+                  img.src = path
+                  console.log(path)
+                })
+            })
+          })
+      })
+    })
+}
+
+// Figure out why the images are loading twice!

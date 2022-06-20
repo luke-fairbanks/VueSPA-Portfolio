@@ -20,7 +20,7 @@ const firebaseConfig = {
   projectId: 'luke-fairbanks-portfolio',
   storageBucket: 'luke-fairbanks-portfolio.appspot.com',
   messagingSenderId: '261899530731',
-  appId: `/.netlify/functions/APP_ID`,
+  appId: '1:261899530731:web:6a480b7982d89bdcb969ae',
   measurementId: 'G-6XM1P4FGMZ'
 }
 
