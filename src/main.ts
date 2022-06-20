@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
@@ -12,14 +13,14 @@ import { initializeApp } from 'firebase/app'
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-console.log(process.env.API_KEY)
+console.log(process.env.VUE_APP_API_KEY)
 const firebaseConfig = {
-  apiKey: process.env.API_KEY,
+  apiKey: `/.netlify/functions/API_KEY`,
   authDomain: 'luke-fairbanks-portfolio.firebaseapp.com',
   projectId: 'luke-fairbanks-portfolio',
   storageBucket: 'luke-fairbanks-portfolio.appspot.com',
   messagingSenderId: '261899530731',
-  appId: process.env.APP_ID,
+  appId: `/.netlify/functions/APP_ID`,
   measurementId: 'G-6XM1P4FGMZ'
 }
 
