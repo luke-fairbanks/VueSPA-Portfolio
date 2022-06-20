@@ -15,7 +15,7 @@ import { initializeApp } from 'firebase/app'
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 console.log(process.env.VUE_APP_API_KEY)
 const firebaseConfig = {
-  apiKey: `/.netlify/functions/API_KEY`,
+  apiKey: 'AIzaSyCC-XHHVG54bD2z6-C7p-CHaDWBru2XXag',
   authDomain: 'luke-fairbanks-portfolio.firebaseapp.com',
   projectId: 'luke-fairbanks-portfolio',
   storageBucket: 'luke-fairbanks-portfolio.appspot.com',
