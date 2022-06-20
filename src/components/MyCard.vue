@@ -33,7 +33,7 @@
                     </li>
                     <li>
                         <h3>
-                            Student
+                            Computer Science Student
                         </h3>
                     </li>
                     <li>

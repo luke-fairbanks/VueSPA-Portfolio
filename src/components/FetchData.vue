@@ -93,7 +93,7 @@
     margin-left: 50%;
     text-align: left;
     border-left: 2px dashed var(--main-accent);
-    transform: translateX(-2px);
+    right: 2px;
     position: relative;
     z-index: 3;
     margin-top: -5px;
@@ -163,7 +163,7 @@
     text-align: right;
     border-right: 2px dashed var(--main-accent);
     position: relative;
-    z-index: 3;
+    // z-index: 3;
     margin-top: -5px;
     .item:target{
       border: 3px solid var(--main-light-color);
@@ -305,12 +305,13 @@
     top: 0;
     bottom: 0;
     margin: auto;
-    height: fit-content;
     font-size: clamp(32px, 28vw, 28em);
     color: var(--main-accent);
     opacity: 70%;
-    z-index: 1;
+    // z-index: -1;
     user-select: none;
+    display: flex;
+    align-items: center;
  }
  .year-left{
    right: -30vw;
@@ -382,21 +383,30 @@
         }
       }
       &.animation3{
-        animation: 1s spiral-up forwards;
+        animation: .7s spiral-up forwards;
         @keyframes spiral-up {
           0%{
-            transform: translate(-50%, -50%) scale(.2);
+            transform: translate(-50%, -50%) scale(.5);
             opacity: .2;
           }
           100%{
-            transform: translate(-50%, -50%) scale(1) rotate(720deg);
+            transform: translate(-50%, -50%) scale(1) rotate(360deg);
             opacity: 1;
           }
         }
       }
       &.animation4{
         //Would be cool to have it look like its pushing out of the original picture
-
+        opacity: 1;
+        animation: diaganol-flip 2s cubic-bezier(1, 0.09, 0.6, 1.65) forwards;
+        @keyframes diaganol-flip {
+          from{
+            transform: translate(-50%, -50%) rotateY(90deg) rotateX(90deg);
+          }
+          to{
+            transform: translate(-50%, -50%) rotateY(0deg) rotateX(0deg);
+          }
+        }
       }
     }
   .overlay-bkg{
@@ -426,6 +436,8 @@
     font-size: 3em;
     font-weight: bolder;
     cursor: pointer;
+    user-select: none;
+    filter: drop-shadow(0px 0px 10px var(--main-contrast))
   }
 }
 @media (min-width: 501px) {
@@ -443,6 +455,7 @@ import { getAuth, signOut } from 'firebase/auth'
 import router from '@/router'
 import PostModal from './PostModal.vue'
 import ImageCarousel from './ImageCarousel.vue'
+import { computed } from '@vue/reactivity'
 
 const props = defineProps<{
     doc: string
