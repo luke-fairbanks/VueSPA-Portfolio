@@ -305,7 +305,7 @@
     top: 0;
     bottom: 0;
     margin: auto;
-    font-size: clamp(32px, 28vw, 28em);
+    font-size: clamp(32px, 28vw, 23em);
     color: var(--main-accent);
     opacity: 70%;
     // z-index: -1;
@@ -313,11 +313,11 @@
     display: flex;
     align-items: center;
  }
- .year-left{
-   right: -30vw;
- }
+//  .year-left{
+//    right: -30vw;
+//  }
  .year-right{
-   left: -30vw;
+   right: 0;
  }
 }
 @media (max-width: 500px) {
@@ -355,6 +355,8 @@
   // display: none;
   visibility: hidden;
   transition: visibility 0s ;
+  display: flex;
+  align-items: center;
   &.visible{
     // display: block;.
     visibility: visible;
@@ -437,7 +439,8 @@
     font-weight: bolder;
     cursor: pointer;
     user-select: none;
-    filter: drop-shadow(0px 0px 10px var(--main-contrast))
+    filter: drop-shadow(0px 0px 10px var(--main-contrast));
+    z-index: 4;
   }
 }
 @media (min-width: 501px) {
@@ -466,6 +469,8 @@ const props = defineProps<{
 onBeforeMount(async () => {
   await loadImages()
 })
+
+gsap.registerPlugin(ScrollTrigger)
 
 // Retrieve data
 const snapshot = await fetchData(props.doc)
@@ -498,6 +503,7 @@ onMounted(() => {
   const overlay = document.querySelector('.overlay-image-wrapper') as HTMLElement
   const overlayImage = document.querySelector('.overlay-image') as HTMLElement
   const images = document.querySelectorAll('.carousel-item, .image')
+  // for each image, add click listener and open image larger.
   images.forEach((image, index) => {
     image.addEventListener('click', function () {
       overlay.classList.add('visible')
@@ -510,6 +516,35 @@ onMounted(() => {
           overlayImage.classList.remove(randomAnimation)
         })
       })
+    })
+  })
+
+  document.body.style.overflowX = 'hidden'
+  // get year instances and iterate over them
+  const yearsLeft = document.querySelectorAll('.year-left')
+  yearsLeft.forEach((year) => {
+    gsap.to(year, {
+      scrollTrigger: {
+        trigger: year,
+        start: 'top 70%',
+        end: '+=300',
+        scrub: 1
+      },
+      xPercent: 80,
+      ease: 'none'
+    })
+  })
+  const yearsRight = document.querySelectorAll('.year-right')
+  yearsRight.forEach((year) => {
+    gsap.to(year, {
+      scrollTrigger: {
+        trigger: year,
+        start: 'top 70%',
+        end: '+=200',
+        scrub: 1
+      },
+      xPercent: -80,
+      ease: 'none'
     })
   })
 })

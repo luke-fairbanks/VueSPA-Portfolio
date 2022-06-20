@@ -58,8 +58,6 @@ export function saveImages (data:FileList, toDoc: string) {
 
 // Returning picture URL
 export const picUrl = (name: any, id: string, index: number) => {
-  console.log('LOADED --> ' + loadedImages)
-  console.log('SOURCES --> ' + loadedImgSources)
   const storage = getStorage()
   getDownloadURL(ref(storage, 'portfolioImages/' + name))
     .then((path) => {
@@ -71,7 +69,6 @@ export const picUrl = (name: any, id: string, index: number) => {
       // if not, assign it to new download url
       if (imgIndex !== -1) {
         document.getElementById(id)?.setAttribute('style', `background-image: url(${loadedImages[imgIndex].src})`)
-        console.log('image found in list!')
       } else {
         document.getElementById(id)?.setAttribute('style', `background-image: url(${path})`)
       }
@@ -98,7 +95,6 @@ export async function loadImages () {
                 .then((path) => {
                   const img = new Image()
                   img.src = path
-                  console.log(path)
                   loadedImages.push(img)
                   loadedImgSources.push(img.src)
                 })
@@ -107,5 +103,3 @@ export async function loadImages () {
       })
     })
 }
-
-// Figure out why the images are loading twice!

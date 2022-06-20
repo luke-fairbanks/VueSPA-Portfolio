@@ -1629,6 +1629,13 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
+"@types/gsap@^3.0.0":
+  "integrity" "sha512-BbWLi4WRHGze4C8NV7U7yRevuBFiPkPZZyGa0rryanvh/9HPUFXTNBXsGQxJZJq7Ix7j4RXMYodP3s+OsqCErg=="
+  "resolved" "https://registry.npmjs.org/@types/gsap/-/gsap-3.0.0.tgz"
+  "version" "3.0.0"
+  dependencies:
+    "gsap" "*"
+
 "@types/html-minifier-terser@^6.0.0":
   "integrity" "sha512-oh/6byDPnL1zeNXFrDXFLyZjkr1MsBG667IM792caf1L2UPOOMf65NFzjUH/ltyfwjAGfs1rsX1eftK0jC/KIg=="
   "resolved" "https://registry.npmjs.org/@types/html-minifier-terser/-/html-minifier-terser-6.1.0.tgz"
@@ -4370,7 +4377,7 @@
   "resolved" "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.10.tgz"
   "version" "4.2.10"
 
-"gsap@^3.10.4":
+"gsap@*", "gsap@^3.10.4":
   "integrity" "sha512-6QatdkKxXCMfvCW4rM++0RqyLQAzFX5nwl3yHS0XPgkZBkiSEY3VZVbMltrdtsbER/xZonLtyHt684wRp4erlQ=="
   "resolved" "https://registry.npmjs.org/gsap/-/gsap-3.10.4.tgz"
   "version" "3.10.4"
