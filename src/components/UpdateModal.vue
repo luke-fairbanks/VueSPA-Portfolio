@@ -1,70 +1,77 @@
 <template>
-  <button class="addBtn" @click="toggleModal"><i class="fas fa-plus"></i></button>
-
-  <transition name="modal-animation">
-    <div v-show="modalActive" class="modal">
-    <div class="modal-background" @click="toggleModal"></div>
-      <transition name="modal-animation-inner">
-        <div v-show="modalActive" class="modal-inner">
-          <i @click="toggleModal" class="far fa-times-circle"></i>
-          <form @submit.prevent="submitData" id="postForm" enctype="multipart/form-data" autocomplete="on">
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" v-model="title" />
-            <label for="titleLink" placeholder='url'>Link</label>
-            <input type="url" name="titleLink" id="titleLink" v-model="titleLink" />
-            <label for="description">Description</label>
-            <textarea rows="15" name="description" v-model.trim="description"/>
-            <div class="year-skill-wrapper">
-              <div>
-                <label for="year">Year</label>
-                <input type="number" min="2000" max="30000" step="1" name="year" id="year" v-model.number="year">
-              </div>
-              <div>
-                <label for="skills">Skills (Comma seperated list)</label>
-                <textarea name="skills" id="skills" cols="30" rows="5" v-model="skillList"></textarea>
-              </div>
+  <div @click="toggleModal" class="edit"><i class="fas fa-edit"></i></div>
+  <Teleport to="body">
+    <transition name="modal-animation">
+        <div v-show="modalActive" class="modal">
+        <div class="modal-background" @click="toggleModal"></div>
+        <transition name="modal-animation-inner">
+            <div v-show="modalActive" class="modal-inner">
+            <i @click="toggleModal" class="far fa-times-circle"></i>
+            <form @submit.prevent="startUpdate" id="postForm" enctype="multipart/form-data" autocomplete="on">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" v-model="title" />
+                <label for="titleLink" placeholder='url'>Link</label>
+                <input type="url" name="titleLink" id="titleLink" v-model="titleLink" />
+                <label for="description">Description</label>
+                <textarea rows="15" name="description" v-model.trim="description"/>
+                <div class="year-skill-wrapper">
+                <div>
+                    <label for="year">Year</label>
+                    <input type="number" min="2000" max="30000" step="1" name="year" id="year" v-model.number="year">
+                </div>
+                <div>
+                    <label for="skills">Skills (Comma seperated list)</label>
+                    <textarea name="skills" id="skills" cols="30" rows="5" v-model="skillList"></textarea>
+                </div>
+                </div>
+                <input type="file" name="photo" id="photoForm" multiple>
+                <input type="submit" value="Update">
+            </form>
             </div>
-            <input type="file" name="photo" id="photoForm" multiple>
-            <input type="submit" value="Post">
-          </form>
+        </transition>
         </div>
-      </transition>
-    </div>
-  </transition>
+    </transition>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
 import { ref, defineProps } from 'vue'
-import { saveImages, postData } from '@/scripts/db'
+import { saveImages, updateData } from '@/scripts/db'
 
 const props = defineProps<{
   modalActive: boolean,
-  doc: string
+  doc: string,
+  post: any
 }>()
 
 const modalActive = ref(false)
 const toggleModal = () => {
   modalActive.value = !modalActive.value
 }
-const title = ref()
-const description = ref()
-const year = ref()
-const skillList = ref()
-const titleLink = ref('')
+
+const title = ref(props.post.title)
+const description = ref(props.post.description)
+const year = ref(props.post.year)
+const skillList = ref(props.post.skills as string)
+const titleLink = ref(props.post.link)
 const form = document.getElementById('postForm') as HTMLFormElement
 
-function submitData () {
+// TODO: figure out a solution for editing uploaded photos.
+
+function startUpdate () {
   const imageInput = document.getElementById('photoForm') as HTMLInputElement
   const data = imageInput.files
   let imageNames: string[] = []
   let skills: string[] = []
   if (data) {
     imageNames = saveImages(data, props.doc)
+  } else {
+    imageNames = props.post.imageNames
   }
   if (skillList.value) {
     skills = skillList.value.split(',').map((x: string) => x.trim())
   }
-  postData(props.doc, title.value, titleLink.value, description.value, year.value, skills, imageNames).then(() => {
+  updateData(props.doc, title.value, titleLink.value, description.value, year.value, skills, imageNames, props.post.docId).then(() => {
     modalActive.value = !modalActive.value
     // form.reset()
   })
@@ -72,13 +79,11 @@ function submitData () {
 </script>
 
 <style lang="scss" scoped>
-.addBtn{
-  background-color: transparent;
-  cursor: pointer;
-  color: var(--main-contrast);
-  border: none;
-  border-radius: 50%;
-  font-size: 30px;
+.edit{
+    cursor: pointer;
+    &:hover{
+    color: rgb(135, 196, 135);
+    }
 }
 .modal-animation-enter-active,
 .modal-animation-leave-active {

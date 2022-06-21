@@ -34,6 +34,12 @@
               <p>{{ skill }}</p>
             </div>
           </div>
+          <div v-if="loggedIn" class="edit-post-wrapper">
+            <div>
+              <UpdateModal :doc="$props.doc" :post="post" :modal-active="false"></UpdateModal>
+            </div>
+            <div class="trash" @click="deleteItem(post)"><i class="fas fa-dumpster-fire"></i></div>
+          </div>
         </div>
         <div class="year-right" v-if="(index+1)%2==0">
           <span>{{ post.year }}</span>
@@ -69,6 +75,7 @@
     width: 50px;
   }
 }
+
 @keyframes fade-in{
   from{
     opacity: .4;
@@ -249,6 +256,18 @@
       padding: .8em;
       z-index: 4;
       position: relative;
+      .edit-post-wrapper{
+        font-size: 2em;
+        display: flex;
+        column-gap: .5em;
+        justify-content: center;
+        .trash{
+          cursor: pointer;
+          &:hover{
+            color: crimson;
+          }
+        }
+      }
       .title{
         margin-bottom: .5em;
         color: var(--main-contrast);
@@ -312,6 +331,9 @@
     user-select: none;
     display: flex;
     align-items: center;
+    span{
+      min-width: 47vw;
+    }
  }
 //  .year-left{
 //    right: -30vw;
@@ -451,7 +473,7 @@
 </style>
 
 <script setup lang="ts">
-import { fetchData, picUrl, loadImages } from '../scripts/db'
+import { fetchData, picUrl, loadImages, deletePost } from '../scripts/db'
 import { DocumentData } from 'firebase/firestore'
 import { defineProps, onBeforeMount, onMounted } from 'vue'
 import { getAuth, signOut } from 'firebase/auth'
@@ -460,6 +482,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import router from '@/router'
 import PostModal from './PostModal.vue'
 import ImageCarousel from './ImageCarousel.vue'
+import UpdateModal from './UpdateModal.vue'
 
 // Define props
 const props = defineProps<{
@@ -496,6 +519,12 @@ function logout () {
     alert('sign out unsuccessful')
     console.log(error)
   })
+}
+
+function deleteItem (post: any) {
+  if (confirm(`Are you sure you want to delete ${post.title}?`)) {
+    deletePost(post.docId, props.doc)
+  }
 }
 
 // Add the click event for overlay and styles for each image

@@ -1,4 +1,4 @@
-import { getFirestore, collection, getDocs, DocumentData, addDoc, doc, QuerySnapshot } from 'firebase/firestore'
+import { getFirestore, collection, getDocs, DocumentData, addDoc, doc, QuerySnapshot, deleteDoc, updateDoc } from 'firebase/firestore'
 import { getStorage, getDownloadURL, ref, getBlob, StorageReference, uploadBytes, listAll } from 'firebase/storage'
 import { app } from '@/main'
 import $ from 'jquery'
@@ -22,7 +22,26 @@ export async function postData (toDoc:string, title:string, titleLink: string, d
     imageNames: imageNames
   }
   const docRef = await addDoc(collection(db, toDoc), docData)
+  const updateRef = doc(db, toDoc, docRef.id)
+  const complete = await updateDoc(updateRef, {
+    docId: docRef.id
+  })
   console.log('Document written with ID: ', docRef.id)
+  console.log('Document updated to include ID ' + complete)
+}
+
+// Update data to firestore
+export async function updateData (toDoc:string, title:string, titleLink: string, desc: string, year: BigInteger, skills: Array<string>, imageNames: Array<string>, postId: string) {
+  const docData = {
+    title: title,
+    link: titleLink,
+    description: desc,
+    year: year,
+    skills: skills,
+    imageNames: imageNames
+  }
+  const docRef = doc(db, toDoc, postId)
+  await updateDoc(docRef, docData)
 }
 
 // GENERATE random hex
@@ -101,5 +120,14 @@ export async function loadImages () {
             })
           })
       })
+    })
+}
+
+// deleting a post
+export async function deletePost (postId: string, toDoc: string) {
+  console.log(postId)
+  await deleteDoc(doc(db, toDoc, postId))
+    .then((res) => {
+      console.log('Deleted item ' + postId)
     })
 }
