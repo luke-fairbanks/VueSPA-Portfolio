@@ -247,6 +247,7 @@
         user-select: none;
         margin-inline: auto;
         border-radius: 2%;
+        background-color: var(--main-bkg-dark);
     }
     }
   }

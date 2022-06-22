@@ -31,14 +31,13 @@ export async function postData (toDoc:string, title:string, titleLink: string, d
 }
 
 // Update data to firestore
-export async function updateData (toDoc:string, title:string, titleLink: string, desc: string, year: BigInteger, skills: Array<string>, imageNames: Array<string>, postId: string) {
+export async function updateData (toDoc:string, title:string, titleLink: string, desc: string, year: BigInteger, skills: Array<string>, postId: string) {
   const docData = {
     title: title,
     link: titleLink,
     description: desc,
     year: year,
-    skills: skills,
-    imageNames: imageNames
+    skills: skills
   }
   const docRef = doc(db, toDoc, postId)
   await updateDoc(docRef, docData)

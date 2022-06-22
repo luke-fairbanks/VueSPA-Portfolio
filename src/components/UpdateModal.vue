@@ -24,7 +24,7 @@
                     <textarea name="skills" id="skills" cols="30" rows="5" v-model="skillList"></textarea>
                 </div>
                 </div>
-                <input type="file" name="photo" id="photoForm" multiple>
+                <!-- <input type="file" name="photo" id="photoForm" multiple> -->
                 <input type="submit" value="Update">
             </form>
             </div>
@@ -57,21 +57,20 @@ const titleLink = ref(props.post.link)
 const form = document.getElementById('postForm') as HTMLFormElement
 
 // TODO: figure out a solution for editing uploaded photos.
+// I'm thinking just creating a whole new modal for editing photos
 
 function startUpdate () {
-  const imageInput = document.getElementById('photoForm') as HTMLInputElement
-  const data = imageInput.files
-  let imageNames: string[] = []
+  // const imageInput = document.getElementById('photoForm') as HTMLInputElement
+  // const data = imageInput.files
+  //   let imageNames: string[] = []
   let skills: string[] = []
-  if (data) {
-    imageNames = saveImages(data, props.doc)
-  } else {
-    imageNames = props.post.imageNames
-  }
+  //   if (data) {
+  //     imageNames = saveImages(data, props.doc)
+  //   }
   if (skillList.value) {
     skills = skillList.value.split(',').map((x: string) => x.trim())
   }
-  updateData(props.doc, title.value, titleLink.value, description.value, year.value, skills, imageNames, props.post.docId).then(() => {
+  updateData(props.doc, title.value, titleLink.value, description.value, year.value, skills, props.post.docId).then(() => {
     modalActive.value = !modalActive.value
     // form.reset()
   })
