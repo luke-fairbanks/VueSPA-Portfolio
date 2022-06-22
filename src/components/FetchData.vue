@@ -1,7 +1,7 @@
 <template>
     <div v-if="loggedIn" class="logged-in-wrapper">
         <button @click="logout"> <i class="fas fa-sign-out-alt"></i> </button>
-        <PostModal :modal-active="false" :doc="props.doc"></PostModal>
+        <PostModal :modal-active="false" :doc="props.doc" @refresh-dom="domRefresh"></PostModal>
     </div>
     <div class="overlay-image-wrapper">
       <div class="overlay-bkg"></div>
@@ -36,7 +36,7 @@
           </div>
           <div v-if="loggedIn" class="edit-post-wrapper">
             <div>
-              <UpdateModal :doc="$props.doc" :post="post" :modal-active="false"></UpdateModal>
+              <UpdateModal :doc="$props.doc" :post="post" :modal-active="false" @refresh-dom="domRefresh"></UpdateModal>
             </div>
             <div class="trash" @click="deleteItem(post)"><i class="fas fa-dumpster-fire"></i></div>
           </div>
@@ -476,10 +476,11 @@
 <script setup lang="ts">
 import { fetchData, picUrl, loadImages, deletePost } from '../scripts/db'
 import { DocumentData } from 'firebase/firestore'
-import { defineProps, onBeforeMount, onMounted } from 'vue'
+import { defineProps, onBeforeMount, onMounted, ref } from 'vue'
 import { getAuth, signOut } from 'firebase/auth'
-import { gsap } from 'gsap'
+import { gsap, snap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { app } from '@/main'
 import router from '@/router'
 import PostModal from './PostModal.vue'
 import ImageCarousel from './ImageCarousel.vue'
@@ -490,28 +491,19 @@ const props = defineProps<{
     doc: string
 }>()
 
+// Load images before page is mounted
 onBeforeMount(async () => {
   await loadImages()
 })
 
-gsap.registerPlugin(ScrollTrigger)
-
-// Retrieve data
-const snapshot = await fetchData(props.doc)
-const posts: DocumentData[] = []
-snapshot.forEach((doc) => {
-  posts.push(doc.data())
-})
-
 // Check if logged in
-const auth = getAuth()
+const auth = await getAuth()
 let loggedIn: boolean
 if (auth.currentUser) {
   loggedIn = true
 } else {
   loggedIn = false
 }
-
 // Log out user
 function logout () {
   signOut(auth).then(() => {
@@ -522,14 +514,35 @@ function logout () {
   })
 }
 
-function deleteItem (post: any) {
-  if (confirm(`Are you sure you want to delete ${post.title}?`)) {
-    deletePost(post.docId, props.doc)
-  }
+gsap.registerPlugin(ScrollTrigger)
+
+// Retrieve data
+let snapshot = await fetchData(props.doc)
+// const posts: DocumentData[] = []
+const posts = ref<DocumentData>([])
+snapshot.forEach((doc) => {
+  posts.value.push(doc.data())
+})
+
+// Function for refreshing DOM
+async function domRefresh () {
+  snapshot = await fetchData(props.doc)
+  posts.value.length = 0
+  snapshot.forEach((doc) => {
+    posts.value.push(doc.data())
+  })
 }
 
-// Add the click event for overlay and styles for each image
+function deleteItem (post: any) {
+  if (confirm(`Are you sure you want to delete ${post.title}?`)) {
+    deletePost(post.docId, post.imageNames, props.doc)
+      .then(async () => {
+        domRefresh()
+      })
+  }
+}
 onMounted(() => {
+  // Add the click event for overlay and styles for each image
   const overlay = document.querySelector('.overlay-image-wrapper') as HTMLElement
   const overlayImage = document.querySelector('.overlay-image') as HTMLElement
   const images = document.querySelectorAll('.carousel-item, .image')

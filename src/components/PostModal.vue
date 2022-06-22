@@ -9,7 +9,7 @@
           <i @click="toggleModal" class="far fa-times-circle"></i>
           <form @submit.prevent="submitData" id="postForm" enctype="multipart/form-data" autocomplete="on">
             <label for="title">Title</label>
-            <input type="text" name="title" id="title" v-model="title" />
+            <input type="text" name="title" id="title" v-model="title" required />
             <label for="titleLink" placeholder='url'>Link</label>
             <input type="url" name="titleLink" id="titleLink" v-model="titleLink" />
             <label for="description">Description</label>
@@ -34,22 +34,23 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps } from 'vue'
+import { ref, defineProps, defineEmits } from 'vue'
 import { saveImages, postData } from '@/scripts/db'
 
 const props = defineProps<{
   modalActive: boolean,
   doc: string
 }>()
+const emit = defineEmits(['refreshDom'])
 
 const modalActive = ref(false)
 const toggleModal = () => {
   modalActive.value = !modalActive.value
 }
 const title = ref()
-const description = ref()
-const year = ref()
-const skillList = ref()
+const description = ref('')
+const year = ref(2000)
+const skillList = ref('')
 const titleLink = ref('')
 const form = document.getElementById('postForm') as HTMLFormElement
 
@@ -66,7 +67,12 @@ function submitData () {
   }
   postData(props.doc, title.value, titleLink.value, description.value, year.value, skills, imageNames).then(() => {
     modalActive.value = !modalActive.value
-    // form.reset()
+    title.value = ''
+    description.value = ' '
+    year.value = 2000
+    skillList.value = ''
+    titleLink.value = ''
+    emit('refreshDom')
   })
 }
 </script>

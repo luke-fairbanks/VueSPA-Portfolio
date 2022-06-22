@@ -1,7 +1,7 @@
-import { getFirestore, collection, getDocs, DocumentData, addDoc, doc, QuerySnapshot, deleteDoc, updateDoc } from 'firebase/firestore'
-import { getStorage, getDownloadURL, ref, getBlob, StorageReference, uploadBytes, listAll } from 'firebase/storage'
+import { getFirestore, collection, getDocs, DocumentData, addDoc, doc, onSnapshot, deleteDoc, updateDoc, SnapshotOptions } from 'firebase/firestore'
+import { getStorage, getDownloadURL, ref, getBlob, StorageReference, uploadBytes, listAll, deleteObject } from 'firebase/storage'
 import { app } from '@/main'
-import $ from 'jquery'
+import $, { post } from 'jquery'
 // Initialize Firebase
 const db = getFirestore(app)
 
@@ -12,7 +12,7 @@ export async function fetchData (toDoc: string) {
 }
 
 // Send data to Firestore
-export async function postData (toDoc:string, title:string, titleLink: string, desc: string, year: BigInteger, skills: Array<string>, imageNames: Array<string>) {
+export async function postData (toDoc:string, title:string, titleLink: string, desc: string, year: number, skills: Array<string>, imageNames: Array<string>) {
   const docData = {
     title: title,
     link: titleLink,
@@ -123,8 +123,15 @@ export async function loadImages () {
 }
 
 // deleting a post
-export async function deletePost (postId: string, toDoc: string) {
+export async function deletePost (postId: string, imageList: Array<string>, toDoc: string) {
   console.log(postId)
+  console.log(imageList)
+  const storage = getStorage()
+
+  for (const img of imageList) {
+    const imgRef = ref(storage, 'portfolioImages/' + img)
+    deleteObject(imgRef)
+  }
   await deleteDoc(doc(db, toDoc, postId))
     .then((res) => {
       console.log('Deleted item ' + postId)

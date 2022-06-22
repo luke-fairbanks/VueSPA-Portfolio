@@ -35,9 +35,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps } from 'vue'
+import { ref, defineProps, defineEmits } from 'vue'
 import { saveImages, updateData } from '@/scripts/db'
-
+const emit = defineEmits(['refreshDom'])
 const props = defineProps<{
   modalActive: boolean,
   doc: string,
@@ -52,7 +52,7 @@ const toggleModal = () => {
 const title = ref(props.post.title)
 const description = ref(props.post.description)
 const year = ref(props.post.year)
-const skillList = ref(props.post.skills as string)
+const skillList = ref(props.post.skills as string + ' ')
 const titleLink = ref(props.post.link)
 const form = document.getElementById('postForm') as HTMLFormElement
 
@@ -72,7 +72,7 @@ function startUpdate () {
   }
   updateData(props.doc, title.value, titleLink.value, description.value, year.value, skills, props.post.docId).then(() => {
     modalActive.value = !modalActive.value
-    // form.reset()
+    emit('refreshDom')
   })
 }
 </script>
