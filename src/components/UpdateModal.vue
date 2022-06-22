@@ -13,7 +13,7 @@
                 <label for="titleLink" placeholder='url'>Link</label>
                 <input type="url" name="titleLink" id="titleLink" v-model="titleLink" />
                 <label for="description">Description</label>
-                <textarea rows="15" name="description" v-model.trim="description"/>
+                <textarea rows="10" name="description" v-model.trim="description"/>
                 <div class="year-skill-wrapper">
                 <div>
                     <label for="year">Year</label>
