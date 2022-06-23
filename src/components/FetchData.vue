@@ -97,13 +97,25 @@
     text-decoration: none;
   }
   .right{
-    margin-left: 50%;
+    // margin-left: 50%;
     text-align: left;
-    border-left: 2px dashed var(--main-accent);
-    right: 2px;
     position: relative;
     z-index: 3;
     margin-top: -5px;
+    display: flex;
+    flex-direction: row-reverse;
+    .item{
+      &::before{
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-left: 2px dashed var(--main-accent);
+        z-index: -1;
+      }
+    }
     .item:target{
       border: 3px solid var(--main-light-color);
       border-left: none;
@@ -166,12 +178,24 @@
 
   }
   .left{
-    margin-right: 50%;
+    // margin-right: 50%;
     text-align: right;
-    border-right: 2px dashed var(--main-accent);
     position: relative;
-    // z-index: 3;
     margin-top: -5px;
+    display: flex;
+    flex-direction: row;
+    .item{
+      &::before{
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-right: 2px dashed var(--main-accent);
+        z-index: -1;
+      }
+    }
     .item:target{
       border: 3px solid var(--main-light-color);
       border-right: none;
@@ -257,6 +281,7 @@
       padding: .8em;
       z-index: 4;
       position: relative;
+      width: 50%;
       .edit-post-wrapper{
         font-size: 2em;
         display: flex;
@@ -321,17 +346,18 @@
   }
   .year-left,
   .year-right{
-    position: absolute;
-    top: 0;
-    bottom: 0;
+    // position: absolute;
+    // top: 0;
+    // bottom: 0;
     margin: auto;
-    font-size: clamp(32px, 28vw, 23em);
+    font-size: clamp(32px, 25vw, 23em);
     color: var(--main-accent);
     opacity: 70%;
     // z-index: -1;
     user-select: none;
     display: flex;
     align-items: center;
+    width: 50%;
     span{
       min-width: 47vw;
     }
@@ -348,11 +374,17 @@
     margin-right: 0 !important;
     border-right: none !important;
     text-align: center !important;
+    .item::before{
+      border-right: none;
+    }
   }
   .right{
     margin-left: 0 !important;
     border-left: none !important;
     text-align: center !important;
+    .item::before{
+      border-left: none !important;
+    }
   }
   .skill-wrapper{
     justify-content: center !important;
@@ -366,6 +398,7 @@
   }
   .post-wrapper .item-wrapper .item{
     background-color: transparent;
+    width: 100%;
   }
 }
 .overlay-image-wrapper{
@@ -575,29 +608,29 @@ onMounted(() => {
   // get year instances and iterate over them
   const yearsLeft = document.querySelectorAll('.year-left')
   yearsLeft.forEach((year) => {
-    gsap.to(year, {
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: year,
         start: 'top 70%',
-        end: '+=300',
+        end: '+=500',
         scrub: 1
-      },
-      xPercent: 80,
-      ease: 'none'
+      }
     })
+    tl.from(year, { xPercent: -80, opacity: 0.4 })
+      .to(year, { xPercent: 0, opacity: 0.8 })
   })
   const yearsRight = document.querySelectorAll('.year-right')
   yearsRight.forEach((year) => {
-    gsap.to(year, {
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: year,
         start: 'top 70%',
-        end: '+=200',
+        end: '+=500',
         scrub: 1
-      },
-      xPercent: -80,
-      ease: 'none'
+      }
     })
+    tl.from(year, { xPercent: 80, opacity: 0.4 })
+      .to(year, { xPercent: 0, opacity: 0.8 })
   })
 })
 </script>
