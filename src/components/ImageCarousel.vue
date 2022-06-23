@@ -56,31 +56,56 @@ export default defineComponent({
   },
   mounted () {
     this.showSlides(this.slideIndex)
-    const images = document.querySelectorAll('.carousel-item')
-    images.forEach(image => {
-      let touchstartX = 0
-      let touchendX = 0
-          
-      function checkDirection() {
-        if (touchendX < touchstartX) {
-          alert('swiped left!')
-          this.plusSlides(-1)
-        }
-        if (touchendX > touchstartX) {
-          alert('swiped right!')
-          this.plusSlides(1)
-        }
-      }
+    // const images = document.querySelectorAll('.carousel-item')
+    // images.forEach(image => {
+    //   image.addEventListener('touchstart', handleTouchStart, false);        
+    //   image.addEventListener('touchmove', handleTouchMove, false);
 
-      image.addEventListener('touchstart', e => {
-        touchstartX = e.changedTouches[0].screenX
-      })
+    //   var xDown = null;                                                        
+    //   var yDown = null;
 
-      image.addEventListener('touchend', e => {
-        touchendX = e.changedTouches[0].screenX
-        checkDirection()
-      })
-    });
+    //   function getTouches(evt) {
+    //     return evt.touches ||             // browser API
+    //           evt.originalEvent.touches; // jQuery
+    //   }                                                     
+                                                                              
+    //   function handleTouchStart(evt) {
+    //     const firstTouch = getTouches(evt)[0];                                      
+    //     xDown = firstTouch.clientX;                                      
+    //     yDown = firstTouch.clientY;                                      
+    //   };                                                
+                                                                              
+    //   function handleTouchMove(evt) {
+    //     if ( ! xDown || ! yDown ) {
+    //         return
+    //         // IDEA:
+    //         // instead of just returning, not moving can emit an action to open it up bigger you know
+    //     }
+
+    //     var xUp = evt.touches[0].clientX;                                    
+    //     var yUp = evt.touches[0].clientY;
+
+    //     var xDiff = xDown - xUp;
+    //     var yDiff = yDown - yUp;
+                                                                            
+    //     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+    //         if ( xDiff > 0 ) {
+    //             /* right swipe */ 
+    //         } else {
+    //             /* left swipe */
+    //         }                       
+    //     } else {
+    //         if ( yDiff > 0 ) {
+    //             /* down swipe */ 
+    //         } else { 
+    //             /* up swipe */
+    //         }                                                                 
+    //     }
+    //     /* reset values */
+    //     xDown = null;
+    //     yDown = null;                                             
+    //   } 
+    // })
   },
   computed: {
     cssProps () {
