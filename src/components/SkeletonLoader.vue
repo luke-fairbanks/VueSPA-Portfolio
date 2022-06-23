@@ -86,6 +86,20 @@
         transform: translateX(-2px);
         margin-top: -5px;
     }
-
+    @media (max-width: 500px) {
+    .left{
+        margin-right: 0 !important;
+        border-right: none !important;
+        text-align: center !important;
+    }
+    .right{
+        margin-left: 0 !important;
+        border-left: none !important;
+        text-align: center !important;
+    }
+    .skill-wrapper{
+        justify-content: center !important;
+    }
+    }
 }
 </style>

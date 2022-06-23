@@ -546,7 +546,6 @@ function deleteItem (post: any) {
 function displayOverlay (image: Element) {
   const overlay = document.querySelector('.overlay-image-wrapper') as HTMLElement
   const overlayImage = document.querySelector('.overlay-image') as HTMLElement
-  console.log('display overlay')
   overlay.classList.add('visible')
   const randomAnimation = `animation${Math.floor(Math.random() * 4) + 1}`
   overlayImage.classList.add(randomAnimation)
