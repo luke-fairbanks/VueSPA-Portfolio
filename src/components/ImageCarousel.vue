@@ -54,58 +54,77 @@ export default defineComponent({
       dots[this.slideIndex - 1].className += ' active'
     }
   },
+  emits: ['imagePress'],
   mounted () {
     this.showSlides(this.slideIndex)
-    // const images = document.querySelectorAll('.carousel-item')
-    // images.forEach(image => {
-    //   image.addEventListener('touchstart', handleTouchStart, false);        
-    //   image.addEventListener('touchmove', handleTouchMove, false);
+    const images = document.querySelectorAll('.carousel-item')
+    images.forEach(image => {
+      let xDown: number | null = null
+      let yDown: number | null = null
 
-    //   var xDown = null;                                                        
-    //   var yDown = null;
+      function getTouches (evt: { touches: any; originalEvent: { touches: any; }; }) {
+        return evt.touches || // browser API
+              evt.originalEvent.touches // jQuery
+      }
 
-    //   function getTouches(evt) {
-    //     return evt.touches ||             // browser API
-    //           evt.originalEvent.touches; // jQuery
-    //   }                                                     
-                                                                              
-    //   function handleTouchStart(evt) {
-    //     const firstTouch = getTouches(evt)[0];                                      
-    //     xDown = firstTouch.clientX;                                      
-    //     yDown = firstTouch.clientY;                                      
-    //   };                                                
-                                                                              
-    //   function handleTouchMove(evt) {
-    //     if ( ! xDown || ! yDown ) {
-    //         return
-    //         // IDEA:
-    //         // instead of just returning, not moving can emit an action to open it up bigger you know
-    //     }
+      function handleTouchStart (evt: any) {
+        const firstTouch = getTouches(evt)[0]
+        xDown = firstTouch.clientX
+        yDown = firstTouch.clientY
+      }
 
-    //     var xUp = evt.touches[0].clientX;                                    
-    //     var yUp = evt.touches[0].clientY;
+      const handleTouchMove = (evt: any) => {
+        if (!xDown || !yDown) {
+          return
+        }
 
-    //     var xDiff = xDown - xUp;
-    //     var yDiff = yDown - yUp;
-                                                                            
-    //     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-    //         if ( xDiff > 0 ) {
-    //             /* right swipe */ 
-    //         } else {
-    //             /* left swipe */
-    //         }                       
-    //     } else {
-    //         if ( yDiff > 0 ) {
-    //             /* down swipe */ 
-    //         } else { 
-    //             /* up swipe */
-    //         }                                                                 
-    //     }
-    //     /* reset values */
-    //     xDown = null;
-    //     yDown = null;                                             
-    //   } 
-    // })
+        const xUp = evt.touches[0].clientX
+        const yUp = evt.touches[0].clientY
+
+        const xDiff = xDown - xUp
+        const yDiff = yDown - yUp
+
+        if (Math.abs(xDiff) > Math.abs(yDiff)) { /* most significant */
+          if (xDiff > -5) {
+            /* right swipe */
+            this.plusSlides(1)
+          } else {
+            /* left swipe */
+            this.plusSlides(-1)
+          }
+        } else {
+          if (yDiff > 0) {
+            /* down swipe */
+          } else {
+            /* up swipe */
+          }
+        }
+        /* reset values */
+        xDown = null
+        yDown = null
+      }
+
+      const handleTouchEnd = (evt: any) => {
+        if (!xDown || !yDown) {
+          return
+        }
+        const xUp = evt.changedTouches[evt.changedTouches.length - 1].pageX
+        const yUp = evt.changedTouches[evt.changedTouches.length - 1].pageY
+
+        const xDiff = xDown - xUp
+        const yDiff = yDown - yUp
+
+        if (xDiff === 0) {
+          // IDEA:
+          // instead of just returning, not moving can emit an action to open it up bigger you know
+          console.log('touch')
+          this.$emit('imagePress', image)
+        }
+      }
+      image.addEventListener('touchstart', handleTouchStart, false)
+      image.addEventListener('touchmove', handleTouchMove, false)
+      image.addEventListener('touchend', handleTouchEnd, false)
+    })
   },
   computed: {
     cssProps () {

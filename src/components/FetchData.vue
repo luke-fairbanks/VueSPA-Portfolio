@@ -20,7 +20,7 @@
             {{ post.title }}
           </h2>
           <div class="image-wrapper" v-if="post.imageNames.length != 0">
-            <ImageCarousel v-if="post.imageNames.length>1" :images="post.imageNames" :dataIndex="index" v-bind:id="index"></ImageCarousel>
+            <ImageCarousel v-if="post.imageNames.length>1" :images="post.imageNames" :dataIndex="index" @image-press="displayOverlay" v-bind:id="index"></ImageCarousel>
             <div v-else class="single-image">
               <div class="image" :id="'image'+index" :inner-h-t-m-l="picUrl(post.imageNames[0], `image${index}`, 0)"></div>
             </div>
@@ -541,24 +541,34 @@ function deleteItem (post: any) {
       })
   }
 }
-onMounted(() => {
-  // Add the click event for overlay and styles for each image
+
+// function for showing overlay image
+function displayOverlay (image: Element) {
   const overlay = document.querySelector('.overlay-image-wrapper') as HTMLElement
   const overlayImage = document.querySelector('.overlay-image') as HTMLElement
-  const images = document.querySelectorAll('.carousel-item, .image')
+  console.log('display overlay')
+  overlay.classList.add('visible')
+  const randomAnimation = `animation${Math.floor(Math.random() * 4) + 1}`
+  overlayImage.classList.add(randomAnimation)
+  overlayImage.style.backgroundImage = image.style.backgroundImage
+  setTimeout(() => {
+    document.querySelectorAll('.overlay-bkg, .overlay-exit').forEach((item) => {
+      item.addEventListener('click', function () {
+        overlay.classList.remove('visible')
+        overlayImage.classList.remove(randomAnimation)
+      })
+    })
+  }, 500)
+}
+
+onMounted(() => {
+  // Add the click event for overlay and styles for each image
+  const images = document.querySelectorAll('.image, .carousel-item')
+
   // for each image, add click listener and open image larger.
   images.forEach((image, index) => {
     image.addEventListener('click', function () {
-      overlay.classList.add('visible')
-      const randomAnimation = `animation${Math.floor(Math.random() * 4) + 1}`
-      overlayImage.classList.add(randomAnimation)
-      overlayImage.style.backgroundImage = image.style.backgroundImage
-      document.querySelectorAll('.overlay-bkg, .overlay-exit').forEach((item) => {
-        item.addEventListener('click', function () {
-          overlay.classList.remove('visible')
-          overlayImage.classList.remove(randomAnimation)
-        })
-      })
+      displayOverlay(image)
     })
   })
 
