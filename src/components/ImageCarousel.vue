@@ -56,6 +56,31 @@ export default defineComponent({
   },
   mounted () {
     this.showSlides(this.slideIndex)
+    const images = document.querySelectorAll('.carousel-item')
+    images.forEach(image => {
+      let touchstartX = 0
+      let touchendX = 0
+          
+      function checkDirection() {
+        if (touchendX < touchstartX) {
+          alert('swiped left!')
+          this.plusSlides(-1)
+        }
+        if (touchendX > touchstartX) {
+          alert('swiped right!')
+          this.plusSlides(1)
+        }
+      }
+
+      image.addEventListener('touchstart', e => {
+        touchstartX = e.changedTouches[0].screenX
+      })
+
+      image.addEventListener('touchend', e => {
+        touchendX = e.changedTouches[0].screenX
+        checkDirection()
+      })
+    });
   },
   computed: {
     cssProps () {
