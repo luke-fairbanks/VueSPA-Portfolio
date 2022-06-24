@@ -358,9 +358,6 @@
     display: flex;
     align-items: center;
     width: 50%;
-    span{
-      min-width: 47vw;
-    }
  }
 //  .year-left{
 //    right: -30vw;
