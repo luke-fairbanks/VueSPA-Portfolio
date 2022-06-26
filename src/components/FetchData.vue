@@ -20,7 +20,7 @@
             {{ post.title }}
           </h2>
           <div class="image-wrapper" v-if="post.imageNames.length != 0">
-            <ImageCarousel v-if="post.imageNames.length>1" :images="post.imageNames" :dataIndex="index" v-bind:id="index"></ImageCarousel>
+            <ImageCarousel v-if="post.imageNames.length>1" :images="post.imageNames" :dataIndex="index" @image-press="displayOverlay" v-bind:id="index"></ImageCarousel>
             <div v-else class="single-image">
               <div class="image" :id="'image'+index" :inner-h-t-m-l="picUrl(post.imageNames[0], `image${index}`, 0)"></div>
             </div>
@@ -97,13 +97,25 @@
     text-decoration: none;
   }
   .right{
-    margin-left: 50%;
+    // margin-left: 50%;
     text-align: left;
-    border-left: 2px dashed var(--main-accent);
-    right: 2px;
     position: relative;
     z-index: 3;
     margin-top: -5px;
+    display: flex;
+    flex-direction: row-reverse;
+    .item{
+      &::before{
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-left: 2px dashed var(--main-accent);
+        z-index: -1;
+      }
+    }
     .item:target{
       border: 3px solid var(--main-light-color);
       border-left: none;
@@ -166,12 +178,24 @@
 
   }
   .left{
-    margin-right: 50%;
+    // margin-right: 50%;
     text-align: right;
-    border-right: 2px dashed var(--main-accent);
     position: relative;
-    // z-index: 3;
     margin-top: -5px;
+    display: flex;
+    flex-direction: row;
+    .item{
+      &::before{
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-right: 2px dashed var(--main-accent);
+        z-index: -1;
+      }
+    }
     .item:target{
       border: 3px solid var(--main-light-color);
       border-right: none;
@@ -257,6 +281,7 @@
       padding: .8em;
       z-index: 4;
       position: relative;
+      width: 50%;
       .edit-post-wrapper{
         font-size: 2em;
         display: flex;
@@ -321,20 +346,18 @@
   }
   .year-left,
   .year-right{
-    position: absolute;
-    top: 0;
-    bottom: 0;
+    // position: absolute;
+    // top: 0;
+    // bottom: 0;
     margin: auto;
-    font-size: clamp(32px, 28vw, 23em);
+    font-size: clamp(32px, 25vw, 23em);
     color: var(--main-accent);
     opacity: 70%;
     // z-index: -1;
     user-select: none;
     display: flex;
     align-items: center;
-    span{
-      min-width: 47vw;
-    }
+    width: 50%;
  }
  .year-right{
    right: 0;
@@ -345,11 +368,17 @@
     margin-right: 0 !important;
     border-right: none !important;
     text-align: center !important;
+    .item::before{
+      border-right: none;
+    }
   }
   .right{
     margin-left: 0 !important;
     border-left: none !important;
     text-align: center !important;
+    .item::before{
+      border-left: none !important;
+    }
   }
   .skill-wrapper{
     justify-content: center !important;
@@ -363,6 +392,7 @@
   }
   .post-wrapper .item-wrapper .item{
     background-color: transparent;
+    width: 100%;
   }
 }
 .overlay-image-wrapper{
@@ -538,24 +568,33 @@ function deleteItem (post: any) {
       })
   }
 }
-onMounted(() => {
-  // Add the click event for overlay and styles for each image
+
+// function for showing overlay image
+function displayOverlay (image: Element) {
   const overlay = document.querySelector('.overlay-image-wrapper') as HTMLElement
   const overlayImage = document.querySelector('.overlay-image') as HTMLElement
-  const images = document.querySelectorAll('.carousel-item, .image')
+  overlay.classList.add('visible')
+  const randomAnimation = `animation${Math.floor(Math.random() * 4) + 1}`
+  overlayImage.classList.add(randomAnimation)
+  overlayImage.style.backgroundImage = image.style.backgroundImage
+  setTimeout(() => {
+    document.querySelectorAll('.overlay-bkg, .overlay-exit').forEach((item) => {
+      item.addEventListener('click', function () {
+        overlay.classList.remove('visible')
+        overlayImage.classList.remove(randomAnimation)
+      })
+    })
+  }, 500)
+}
+
+onMounted(() => {
+  // Add the click event for overlay and styles for each image
+  const images = document.querySelectorAll('.image, .carousel-item')
+
   // for each image, add click listener and open image larger.
   images.forEach((image, index) => {
     image.addEventListener('click', function () {
-      overlay.classList.add('visible')
-      const randomAnimation = `animation${Math.floor(Math.random() * 4) + 1}`
-      overlayImage.classList.add(randomAnimation)
-      overlayImage.style.backgroundImage = image.style.backgroundImage
-      document.querySelectorAll('.overlay-bkg, .overlay-exit').forEach((item) => {
-        item.addEventListener('click', function () {
-          overlay.classList.remove('visible')
-          overlayImage.classList.remove(randomAnimation)
-        })
-      })
+      displayOverlay(image)
     })
   })
 
@@ -563,29 +602,29 @@ onMounted(() => {
   // get year instances and iterate over them
   const yearsLeft = document.querySelectorAll('.year-left')
   yearsLeft.forEach((year) => {
-    gsap.to(year, {
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: year,
         start: 'top 70%',
-        end: '+=300',
+        end: '+=500',
         scrub: 1
-      },
-      xPercent: 80,
-      ease: 'none'
+      }
     })
+    tl.from(year, { xPercent: -80, opacity: 0.4 })
+      .to(year, { xPercent: 0, opacity: 0.8 })
   })
   const yearsRight = document.querySelectorAll('.year-right')
   yearsRight.forEach((year) => {
-    gsap.to(year, {
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: year,
         start: 'top 70%',
-        end: '+=200',
+        end: '+=500',
         scrub: 1
-      },
-      xPercent: -80,
-      ease: 'none'
+      }
     })
+    tl.from(year, { xPercent: 80, opacity: 0.4 })
+      .to(year, { xPercent: 0, opacity: 0.8 })
   })
 })
 </script>
