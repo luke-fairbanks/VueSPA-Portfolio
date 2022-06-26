@@ -336,9 +336,6 @@
       min-width: 47vw;
     }
  }
-//  .year-left{
-//    right: -30vw;
-//  }
  .year-right{
    right: 0;
  }
