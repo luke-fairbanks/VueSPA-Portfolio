@@ -175,7 +175,7 @@
             stroke-dashoffset: 68;
             stroke-dasharray: 68;
             &.active{
-                animation: stroke1 forwards ease .5s;
+                animation: stroke1 forwards cubic-bezier(0.77, 0.12, 0.43, 0.9) .5s;
                 @keyframes stroke1 {
                     50%{
                         stroke-dashoffset: 0;
@@ -194,7 +194,7 @@
             stroke-dashoffset: 52;
             stroke-dasharray: 52;
             &.active{
-                animation: stroke2 forwards ease .5s;
+                animation: stroke2 forwards cubic-bezier(0.77, 0.12, 0.43, 0.9) .5s;
                 @keyframes stroke2 {
                     50%{
                         stroke-dashoffset: 0;
