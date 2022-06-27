@@ -163,6 +163,7 @@
     .loader-svg{
         height: 50%;
         width: 50%;
+        z-index: 6;
         #loader-path-top{
             stroke-dashoffset: 68;
             stroke-dasharray: 68;
@@ -207,7 +208,7 @@
         height: 200vh;
         width: 100vw;
         background-color: var(--main-bkg-dark);
-        z-index: -1;
+        z-index: 5;
         transition: 1s ease;
         &.hide{
             animation: away .6s ease forwards;
@@ -215,6 +216,7 @@
                 to{
                     height: 380px;
                     width: 700px;
+                    z-index: -1;
                 }
             }
             @media (max-width: 750px) {
@@ -222,6 +224,7 @@
                 to{
                     height: 700px;
                     width: 320px;
+                    z-index: -1;
                 }
             }
             }
@@ -433,7 +436,6 @@ onMounted(() => {
     document.querySelector('.hamburglar')?.classList.add('hide')
     document.body.style.overflow = 'hidden'
     document.querySelector('.loader-svg')?.scrollIntoView({
-      behavior: 'auto',
       block: 'center',
       inline: 'center'
     })
