@@ -112,6 +112,9 @@ export default {
             user-select: none;
     z-index: 101;
   }
+  .hamburglar.hide{
+    z-index: 0;
+  }
 
   .path-burger {
     position: absolute;

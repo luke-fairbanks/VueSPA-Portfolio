@@ -6,63 +6,75 @@
             </p>
         </div>
         <div class="intro-card">
-            <div class="left-col">
-                <div class="card-photo"> </div>
-                <div class="card-info">
-                    <div class="name">Luke Fairbanks</div>
-                    <div class="title">Full Stack Developer</div>
-                </div>
-            </div>
-            <div class="middle-col">
-                <div class="graphic-wrapper">
-                    <div class="graphic">
-
-                    <!--   <img  alt="luke-fairbanks's GitHub Stats" src="https://awesome-github-stats.azurewebsites.net/user-stats/luke-fairbanks?cardType=github&theme=blueberry" />  -->
+            <div class="intro-card-inner">
+                <div class="intro-card-front">
+                    <div class="left-col">
+                        <div class="card-photo"> </div>
+                        <div class="card-info">
+                            <div class="name">Luke Fairbanks</div>
+                            <div class="title">Full Stack Developer</div>
+                        </div>
+                    </div>
+                    <div class="middle-col">
+                        <div class="graphic-wrapper">
+                            <div class="graphic">
+                            </div>
+                        </div>
+                        <div class="github-link-wrapper">
+                            <a href="https://github.com/anuraghazra/github-readme-stats" @click.stop="" target="_blank"><i class="fab fa-github"></i>powered by github</a>
+                        </div>
+                        <ul>
+                            <li>
+                                <h3>
+                                    Aspiring software developer
+                                </h3>
+                            </li>
+                            <li>
+                                <h3>
+                                    Computer Science Student
+                                </h3>
+                            </li>
+                            <li>
+                                <h3>
+                                    Entrepenuer
+                                </h3>
+                            </li>
+                            <li>
+                                <h3>
+                                    Athlete
+                                </h3>
+                            </li>
+                        </ul>
 
                     </div>
+                    <div class="right-col">
 
-                </div>
-                <div class="github-link-wrapper">
-                    <a href="https://github.com/anuraghazra/github-readme-stats" target="_blank"><i class="fab fa-github"></i>powered by github</a>
-                </div>
-                <ul>
-                    <li>
-                        <h3>
-                            Aspiring software developer
-                        </h3>
-                    </li>
-                    <li>
-                        <h3>
-                            Computer Science Student
-                        </h3>
-                    </li>
-                    <li>
-                        <h3>
-                            Entrepenuer
-                        </h3>
-                    </li>
-                    <li>
-                        <h3>
-                            Athlete
-                        </h3>
-                    </li>
-                </ul>
+                        <div class="icon" style="background-color: #4B8BBE;">
+                            <i class="fab fa-python"></i>
+                        </div>
 
-            </div>
-            <div class="right-col">
-
-                <div class="icon" style="background-color: #4B8BBE;">
-                    <i class="fab fa-python"></i>
+                        <div class="icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="icon" style="background-color: #95bf48 ;">
+                            <i class="fab fa-shopify"></i>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="icon">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <div class="icon" style="background-color: #95bf48 ;">
-                    <i class="fab fa-shopify"></i>
+                <div class="intro-card-back">
+                    <svg class="loader-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 105.77 102.26">
+                        <defs><linearGradient id="linear-gradient" y1="51.13" x2="105.77" y2="51.13" gradientUnits="userSpaceOnUse"><stop offset="0.02" stop-color="#8a7bd0"/><stop offset="0.25" stop-color="#7b7de0"/><stop offset="0.42" stop-color="#7b7de0"/><stop offset="0.73" stop-color="#ff674d"/><stop offset="0.94" stop-color="#df7660"/><stop offset="1" stop-color="#d57a66"/></linearGradient></defs>
+                        <g id="Layer_2" data-name="Layer 2">
+                            <g id="Layer_1-2" data-name="Layer 1">
+                                <path class="cls-1" id="loader-path-bottom" d="M70,51.17a72.56,72.56,0,0,0-50-8"/>
+                                <path class="cls-1" id="loader-path-top" d="M78,37.17a89.05,89.05,0,0,0-65-9"/>
+                                <path class="cls-2" id="loader-path-circle" d="M67,10.17c16.51,5.18,28.89,17.77,32,33,4.77,23.36-14.5,44.76-34,51a45.3,45.3,0,0,1-30-1c-16.66-6.67-29.77-24-29-43C7.27,19.86,43.36,1,53,7.17c12.73,8.12-17.19,61.58,0,75,8.86,6.91,25.86-.22,37-6"/>
+                            </g>
+                        </g>
+                    </svg>
+                    <div class="intro-overlay-loader" id="intro-overlay-loader"></div>
                 </div>
             </div>
-
         </div>
         <div class="intro-text">
             <h1 style="margin-bottom: 0px;">Hello, my name is <span>Luke Fairbanks</span>. <br> Welcome to my portfolio.</h1>
@@ -72,9 +84,6 @@
 </template>
 
 <style scoped lang="scss">
-body, html{
-    overflow: hidden;
-}
 .intro-wrapper{
     height: 75vh;
    width: 50%;
@@ -102,18 +111,127 @@ body, html{
    max-width: 55vw;
    min-width: 704px;
    min-height: 360px;
-   background-color: var(--main-bkg-dark) ;
-   display: flex;
-   flex-direction: row;
+   background-color: transparent ;
    position: relative;
    color: var(--main-text-color);
+   column-gap: 1em;
    padding: 1em;
-   border-radius: 15px;
-   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
- column-gap: 1em;
 }
 
-.intro-card .left-col{
+.intro-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 1em;
+    top: -16px;
+    left: -16px;
+    background-color: var(--main-bkg-dark);
+    transform: rotateY(180deg);
+}
+.intro-card-inner.transition{
+    transition: transform .8s ease;
+}
+
+.intro-card-inner.active {
+  transform: rotateY(0deg);
+}
+.intro-card-front, .intro-card-back {
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  background-color: var(--main-bkg-dark);
+  top: 0;
+  left: 0;
+  border-radius: 15px;
+}
+
+.intro-card-front{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.intro-card-back{
+    transform: rotateY(180deg);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .loader-svg{
+        height: 50%;
+        width: 50%;
+        z-index: 6;
+        #loader-path-top{
+            stroke-dashoffset: 68;
+            stroke-dasharray: 68;
+            &.active{
+                animation: stroke1 forwards ease .5s;
+                @keyframes stroke1 {
+                    to{
+                        stroke-dashoffset: -20;
+                    }
+                }
+            }
+        }
+
+        #loader-path-bottom{
+            stroke-dashoffset: 52;
+            stroke-dasharray: 52;
+            &.active{
+                animation: stroke2 forwards ease .5s;
+                @keyframes stroke2 {
+                    to{
+                        stroke-dashoffset: -15;
+                    }
+                }
+            }
+        }
+        #loader-path-circle{
+            stroke-dashoffset: 400;
+            stroke-dasharray: 400;
+            &.active{
+                animation: stroke3 1.5s forwards ease;
+                @keyframes stroke3 {
+                    to{
+                        stroke-dashoffset: 0;
+                    }
+                }
+            }
+        }
+        .cls-1,.cls-2{fill:none;stroke-miterlimit:10;stroke-width:12px;}.cls-1{stroke:#7b7de0;}.cls-2{stroke:url(#linear-gradient);}
+    }
+    .intro-overlay-loader{
+        position: absolute;
+        height: 200vh;
+        width: 100vw;
+        background-color: var(--main-bkg-dark);
+        z-index: 5;
+        transition: 1s ease;
+        &.hide{
+            animation: away .6s ease forwards;
+            @keyframes away {
+                to{
+                    height: 380px;
+                    width: 700px;
+                    z-index: -1;
+                }
+            }
+            @media (max-width: 750px) {
+            @keyframes away {
+                to{
+                    height: 700px;
+                    width: 320px;
+                    z-index: -1;
+                }
+            }
+            }
+        }
+    }
+}
+.intro-card .intro-card-front .left-col{
    margin-top: auto;
    margin-bottom: auto;
    display: flex;
@@ -279,6 +397,9 @@ body, html{
             margin-left: 10vw;
         }
     }
+    .intro-card-front{
+        flex-direction: column;
+    }
     .intro-card{
         flex-direction: column;
         min-width: 0;
@@ -305,3 +426,55 @@ body, html{
 
 }
 </style>
+
+<script setup lang="ts">
+import store from '@/store'
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  function playIntro () {
+    document.querySelector('.hamburglar')?.classList.add('hide')
+    document.body.style.overflow = 'hidden'
+    document.querySelector('.loader-svg')?.scrollIntoView({
+      block: 'center',
+      inline: 'center'
+    })
+    document.querySelector('.intro-card-inner')?.classList.add('transition')
+    const topPath = document.querySelector('#loader-path-top')
+    const bottomPath = document.querySelector('#loader-path-bottom')
+    const circlePath = document.querySelector('#loader-path-circle')
+    const introOverlay = document.querySelector('#intro-overlay-loader')
+    circlePath?.classList.add('active')
+    circlePath?.addEventListener('animationend', () => {
+      topPath?.classList.add('active')
+      bottomPath?.classList.add('active')
+      topPath?.addEventListener('animationend', () => {
+        introOverlay?.classList.add('hide')
+        introOverlay?.addEventListener('animationend', () => {
+          document.querySelector('.hamburglar')?.classList.remove('hide')
+          document.body.style.removeProperty('overflow')
+          document.querySelector('.intro-card-inner')?.classList.toggle('active')
+          store.commit('setActivated')
+          document.querySelector('.intro-card')?.addEventListener('click', () => {
+            document.querySelector('.intro-card-inner')?.classList.toggle('active')
+          })
+        })
+      })
+    })
+  }
+  if (store.state.cardAnimaionActivated === false) {
+    setTimeout(playIntro, 500)
+  } else {
+    document.querySelector('.intro-card-inner')?.classList.toggle('active')
+    document.querySelector('.intro-card-inner')?.classList.add('transition')
+    const introOverlay = document.querySelector('#intro-overlay-loader') as HTMLElement
+    introOverlay.style.display = 'none'
+    document.querySelectorAll('#loader-path-top, #loader-path-bottom, #loader-path-circle').forEach((item) => {
+      item.classList.add('active')
+    })
+    document.querySelector('.intro-card')?.addEventListener('click', () => {
+      document.querySelector('.intro-card-inner')?.classList.toggle('active')
+    })
+  }
+})
+</script>
