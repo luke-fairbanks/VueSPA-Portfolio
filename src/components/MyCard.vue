@@ -455,6 +455,7 @@ import { scrollIntoView, polyfill } from 'seamless-scroll-polyfill'
 
 onMounted(() => {
   function playIntro () {
+    document.body.style.overflow = 'auto'
     // scroll to center svg
     polyfill()
     scrollIntoView(document.querySelector('.loader-svg') as Element, {
