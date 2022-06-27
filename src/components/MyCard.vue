@@ -85,7 +85,7 @@
 
 <style scoped lang="scss">
 .intro-wrapper{
-    height: 75vh;
+   height: 75vh;
    width: 50%;
    max-width: 55vw;
    min-width: 750px;
