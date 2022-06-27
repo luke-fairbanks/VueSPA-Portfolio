@@ -85,7 +85,7 @@ export default {
         trigger.addClass('is-closed')
         isClosed = true
         setTimeout(() => {
-          document.body.removeAttribute('style')
+          document.body.style.removeProperty('overflow')
           $('.menu-bg, .link-wrapper, .menu-burger').toggleClass('fs')
         }, 100)
       }

@@ -26,6 +26,16 @@ export default {
 }
 
 @media (hover: hover){
+  @media not all and (min-resolution: 0.001dpcm) {
+    ::-webkit-scrollbar-track{
+      background: transparent !important;
+    }
+    ::-webkit-scrollbar-thumb{
+      background: #7b7de085 !important;
+      box-shadow: none !important;
+    }
+
+  }
   /*scrollbar styles*/
   ::-webkit-scrollbar {
       width: 10px;
@@ -79,6 +89,7 @@ header .flag-wrapper a{
 @media (hover:hover){
   html,body{
     overflow-y: overlay;
+    overflow-x: hidden;
   }
 }
 </style>
