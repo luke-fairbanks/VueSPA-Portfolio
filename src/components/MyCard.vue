@@ -451,7 +451,7 @@
 <script setup lang="ts">
 import store from '@/store'
 import { onMounted } from 'vue'
-import { scrollIntoView } from 'seamless-scroll-polyfill'
+import { scrollIntoView, polyfill } from 'seamless-scroll-polyfill'
 
 onMounted(() => {
   function playIntro () {
@@ -459,6 +459,7 @@ onMounted(() => {
     document.querySelector('.hamburglar')?.classList.add('hide')
     document.body.style.overflow = 'hidden'
     // scroll to center svg
+    polyfill()
     scrollIntoView(document.querySelector('.loader-svg') as Element, {
       behavior: 'auto',
       block: 'center',
