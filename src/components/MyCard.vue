@@ -455,9 +455,6 @@ import { scrollIntoView, polyfill } from 'seamless-scroll-polyfill'
 
 onMounted(() => {
   function playIntro () {
-    // hide scrollbar and hamburger menu
-    document.querySelector('.hamburglar')?.classList.add('hide')
-    document.body.style.overflow = 'hidden'
     // scroll to center svg
     polyfill()
     scrollIntoView(document.querySelector('.loader-svg') as Element, {
@@ -469,6 +466,9 @@ onMounted(() => {
     //   block: 'center',
     //   inline: 'center'
     // })
+    // hide scrollbar and hamburger menu
+    document.querySelector('.hamburglar')?.classList.add('hide')
+    document.body.style.overflow = 'hidden'
     // put but transition on inner card
     document.querySelector('.intro-card-inner')?.classList.add('transition')
     // define our elements
