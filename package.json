@@ -23,6 +23,7 @@
     "graceful-fs": "^4.2.10",
     "gsap": "^3.10.4",
     "jquery": "^3.6.0",
+    "seamless-scroll-polyfill": "^2.2.0",
     "url-loader": "^4.1.1",
     "vue": "^3.2.13",
     "vue-js-modal": "^2.0.1",
