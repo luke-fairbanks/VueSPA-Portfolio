@@ -142,6 +142,7 @@
   width: 100%;
   height: 100%;
   -webkit-backface-visibility: hidden; /* Safari */
+  visibility: visible;
   backface-visibility: hidden;
   background-color: var(--main-bkg-dark);
   top: 0;
@@ -433,17 +434,22 @@ import { onMounted } from 'vue'
 
 onMounted(() => {
   function playIntro () {
+    // hide scrollbar and hamburger menu
     document.querySelector('.hamburglar')?.classList.add('hide')
     document.body.style.overflow = 'hidden'
+    // scroll to center svg
     document.querySelector('.loader-svg')?.scrollIntoView({
       block: 'center',
       inline: 'center'
     })
+    // put but transition on inner card
     document.querySelector('.intro-card-inner')?.classList.add('transition')
+    // define our elements
     const topPath = document.querySelector('#loader-path-top')
     const bottomPath = document.querySelector('#loader-path-bottom')
     const circlePath = document.querySelector('#loader-path-circle')
     const introOverlay = document.querySelector('#intro-overlay-loader')
+    // begin animation, setting each one active after the one before has finished
     circlePath?.classList.add('active')
     circlePath?.addEventListener('animationend', () => {
       topPath?.classList.add('active')
@@ -451,6 +457,7 @@ onMounted(() => {
       topPath?.addEventListener('animationend', () => {
         introOverlay?.classList.add('hide')
         introOverlay?.addEventListener('animationend', () => {
+          // end of animation, restore styles and toggle state
           document.querySelector('.hamburglar')?.classList.remove('hide')
           document.body.style.removeProperty('overflow')
           document.querySelector('.intro-card-inner')?.classList.toggle('active')
