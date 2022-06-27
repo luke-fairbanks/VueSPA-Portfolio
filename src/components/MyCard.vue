@@ -85,7 +85,7 @@
 
 <style scoped lang="scss">
 .intro-wrapper{
-    height: 75vh;
+   height: 75vh;
    width: 50%;
    max-width: 55vw;
    min-width: 750px;
@@ -122,6 +122,7 @@
     position: relative;
     width: 100%;
     height: 100%;
+    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -129,13 +130,14 @@
     top: -16px;
     left: -16px;
     background-color: var(--main-bkg-dark);
-    transform: rotateY(180deg);
+    transform: rotateY(179.9deg);
 }
 .intro-card-inner.transition{
     transition: transform .8s ease;
 }
 
 .intro-card-inner.active {
+  -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
 }
 .intro-card-front, .intro-card-back {
@@ -144,6 +146,8 @@
   -webkit-backface-visibility: hidden; /* Safari */
   visibility: visible;
   backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
   background-color: var(--main-bkg-dark);
   top: 0;
   left: 0;
@@ -151,11 +155,14 @@
 }
 
 .intro-card-front{
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 .intro-card-back{
+    -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
     position: absolute;
     display: flex;
@@ -169,10 +176,16 @@
             stroke-dashoffset: 68;
             stroke-dasharray: 68;
             &.active{
-                animation: stroke1 forwards ease .5s;
+                animation: stroke1 forwards cubic-bezier(0.77, 0.12, 0.43, 0.9) .5s;
                 @keyframes stroke1 {
-                    to{
-                        stroke-dashoffset: -20;
+                    50%{
+                        stroke-dashoffset: 0;
+                    }
+                    51%{
+                        stroke-dashoffset: 136;
+                    }
+                    100%{
+                        stroke-dashoffset: 110;
                     }
                 }
             }
@@ -182,10 +195,16 @@
             stroke-dashoffset: 52;
             stroke-dasharray: 52;
             &.active{
-                animation: stroke2 forwards ease .5s;
+                animation: stroke2 forwards cubic-bezier(0.77, 0.12, 0.43, 0.9) .5s;
                 @keyframes stroke2 {
-                    to{
-                        stroke-dashoffset: -15;
+                    50%{
+                        stroke-dashoffset: 0;
+                    }
+                    51%{
+                        stroke-dashoffset: 104;
+                    }
+                    100%{
+                        stroke-dashoffset: 88;
                     }
                 }
             }
@@ -211,6 +230,7 @@
         background-color: var(--main-bkg-dark);
         z-index: 5;
         transition: 1s ease;
+        backface-visibility: hidden;
         &.hide{
             animation: away .6s ease forwards;
             @keyframes away {
