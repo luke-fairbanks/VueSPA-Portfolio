@@ -62,17 +62,25 @@
                     </div>
                 </div>
                 <div class="intro-card-back">
-                    <svg class="loader-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 105.77 102.26">
-                        <defs><linearGradient id="linear-gradient" y1="51.13" x2="105.77" y2="51.13" gradientUnits="userSpaceOnUse"><stop offset="0.02" stop-color="#8a7bd0"/><stop offset="0.25" stop-color="#7b7de0"/><stop offset="0.42" stop-color="#7b7de0"/><stop offset="0.73" stop-color="#ff674d"/><stop offset="0.94" stop-color="#df7660"/><stop offset="1" stop-color="#d57a66"/></linearGradient></defs>
-                        <g id="Layer_2" data-name="Layer 2">
-                            <g id="Layer_1-2" data-name="Layer 1">
-                                <path class="cls-1" id="loader-path-bottom" d="M70,51.17a72.56,72.56,0,0,0-50-8"/>
-                                <path class="cls-1" id="loader-path-top" d="M78,37.17a89.05,89.05,0,0,0-65-9"/>
-                                <path class="cls-2" id="loader-path-circle" d="M67,10.17c16.51,5.18,28.89,17.77,32,33,4.77,23.36-14.5,44.76-34,51a45.3,45.3,0,0,1-30-1c-16.66-6.67-29.77-24-29-43C7.27,19.86,43.36,1,53,7.17c12.73,8.12-17.19,61.58,0,75,8.86,6.91,25.86-.22,37-6"/>
+                    <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                        <svg id="Layer_2" class="loader-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 137 136">
+                            <defs>
+                                <linearGradient id="New_Gradient_Swatch_1" x1="29" y1="72.88" x2="110" y2="72.88" gradientTransform="matrix(1, 0, 0, 1, 0, 0) rotate(45)" gradientUnits="userSpaceOnUse"><stop offset=".02" stop-color="#8a7bd0"/><stop offset=".25" stop-color="#7b7de0"/><stop offset=".42" stop-color="#7b7de0"/><stop offset=".73" stop-color="#ff674d"/><stop offset=".94" stop-color="#de7560"/><stop offset="1" stop-color="#d57a66"/></linearGradient>
+                                <filter id="drop-shadow-1" filterUnits="userSpaceOnUse"><feOffset dx="2" dy="2"/><feGaussianBlur result="blur" stdDeviation="5"/><feFlood flood-color="#000" flood-opacity=".7"/><feComposite in2="blur" operator="in"/><feComposite in="SourceGraphic"/></filter>
+                                <linearGradient id="linear-gradient" x1="24.57" y1="61.04" x2="111.1" y2="61.04" gradientTransform="matrix(1, 0, 0, 1, 0, 0) rotate(45)" gradientUnits="userSpaceOnUse"><stop offset=".02" stop-color="#8a7bd0"/><stop offset=".25" stop-color="#7b7de0"/><stop offset=".42" stop-color="#7b7de0"/><stop offset=".73" stop-color="#ff674d"/><stop offset=".94" stop-color="#de7560"/><stop offset="1" stop-color="#d57a66"/></linearGradient>
+                                <filter id="drop-shadow-2" filterUnits="userSpaceOnUse"><feOffset dx="2" dy="2"/><feGaussianBlur result="blur-2" stdDeviation="5"/><feFlood flood-color="#000" flood-opacity=".7"/><feComposite in2="blur-2" operator="in"/><feComposite in="SourceGraphic"/></filter>
+                                <linearGradient id="New_Gradient_Swatch_1-2" gradientTransform="rotate(10)" x1="13.59" y1="65.92" x2="119.48" y2="65.92" xlink:href="#New_Gradient_Swatch_1"/>
+                                <filter id="drop-shadow-3" filterUnits="userSpaceOnUse"><feOffset dx="2" dy="2"/><feGaussianBlur result="blur-3" stdDeviation="5"/><feFlood flood-color="#000" flood-opacity=".7"/><feComposite in2="blur-3" operator="in"/><feComposite in="SourceGraphic"/></filter>
+                                <linearGradient id="New_Gradient_Swatch_1-3" x1="21" y1="71" x2="21" y2="71" xlink:href="#New_Gradient_Swatch_1"/>
+                                <filter id="drop-shadow-4" filterUnits="userSpaceOnUse"><feOffset dx="2" dy="2"/><feGaussianBlur result="blur-4" stdDeviation="5"/><feFlood flood-color="#000" flood-opacity=".7"/><feComposite in2="blur-4" operator="in"/><feComposite in="SourceGraphic"/></filter>
+                            </defs>
+                            <g id="Layer_1-2">
+                                <path class="cls-2" id="loader-path-bottom" d="M104,88c-.42-1.94-1.24-4.86-3-8-6.87-12.29-21.23-15.98-33-19-7.38-1.89-18.74-3.93-33-3"/>
+                                <path class="cls-1" id="loader-path-top" d="M105,87c.26-3.68,.15-9.1-2-15-6.27-17.22-24.57-23.92-33-27-18.82-6.89-35.81-4.01-44-2"/>
+                                <path class="cls-3" id="loader-path-circle" d="M83,24c3.84,1.17,13.36,4.62,21,14,1.18,1.45,7.29,9.15,9,20,3.27,20.7-10.5,46.21-33,53-15.52,4.68-29.3-1.32-33-3-3.84-1.74-14.01-6.51-21-18-7.83-12.86-6.51-25.65-6-30,.6-5.09,2.29-17.82,13-28,9.74-9.26,27.04-16.53,33-11,11.15,10.33-27.98,55.58-15,72,4.56,5.76,16.78,9.54,52-2"/>
                             </g>
-                        </g>
-                    </svg>
-                    <div class="intro-overlay-loader" id="intro-overlay-loader"></div>
+                        </svg>
+                <div class="intro-overlay-loader" id="intro-overlay-loader"></div>
                 </div>
             </div>
         </div>
@@ -169,12 +177,16 @@
     justify-content: center;
     align-items: center;
     .loader-svg{
-        height: 50%;
-        width: 50%;
+        height: 70%;
+        width: 70%;
         z-index: 6;
+        filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
+        &.enlarge{
+            transform: scale(1.5);
+        }
         #loader-path-top{
-            stroke-dashoffset: 68;
-            stroke-dasharray: 68;
+            stroke-dashoffset: 104.5;
+            stroke-dasharray: 104.5;
             &.active{
                 animation: stroke1 forwards cubic-bezier(0.77, 0.12, 0.43, 0.9) .5s;
                 @keyframes stroke1 {
@@ -182,18 +194,18 @@
                         stroke-dashoffset: 0;
                     }
                     51%{
-                        stroke-dashoffset: 136;
+                        stroke-dashoffset: 209;
                     }
                     100%{
-                        stroke-dashoffset: 110;
+                        stroke-dashoffset: 140;
                     }
                 }
             }
         }
 
         #loader-path-bottom{
-            stroke-dashoffset: 52;
-            stroke-dasharray: 52;
+            stroke-dashoffset: 82;
+            stroke-dasharray: 82;
             &.active{
                 animation: stroke2 forwards cubic-bezier(0.77, 0.12, 0.43, 0.9) .5s;
                 @keyframes stroke2 {
@@ -201,19 +213,19 @@
                         stroke-dashoffset: 0;
                     }
                     51%{
-                        stroke-dashoffset: 104;
+                        stroke-dashoffset: 164;
                     }
                     100%{
-                        stroke-dashoffset: 88;
+                        stroke-dashoffset: 102;
                     }
                 }
             }
         }
         #loader-path-circle{
-            stroke-dashoffset: 400;
-            stroke-dasharray: 400;
+            stroke-dashoffset: 408.2;
+            stroke-dasharray: 408.2;
             &.active{
-                animation: stroke3 1.5s forwards ease;
+                animation: stroke3 1.5s forwards cubic-bezier(0.4, 0, 0.2, 1);
                 @keyframes stroke3 {
                     to{
                         stroke-dashoffset: 0;
@@ -221,7 +233,30 @@
                 }
             }
         }
-        .cls-1,.cls-2{fill:none;stroke-miterlimit:10;stroke-width:12px;}.cls-1{stroke:#7b7de0;}.cls-2{stroke:url(#linear-gradient);}
+        .cls-1{
+            // filter:url(#drop-shadow-2);
+            stroke:url(#linear-gradient);
+        }
+        .cls-1,.cls-2,.cls-3,.cls-4{
+            fill:none;stroke-width:12px;
+        }
+        .cls-1,.cls-3{
+            stroke-miterlimit:10;
+        }
+        .cls-2{
+            // filter:url(#drop-shadow-1);
+            stroke:url(#New_Gradient_Swatch_1);
+        }
+        .cls-1,.cls-2,.cls-3{
+            stroke-linecap:round;
+        }
+        .cls-2{
+            stroke-linejoin:round;
+        }
+        .cls-3{
+            // filter:url(#drop-shadow-3);
+            stroke:url(#New_Gradient_Swatch_1-2);
+        }
     }
     .intro-overlay-loader{
         position: absolute;
@@ -231,6 +266,7 @@
         z-index: 5;
         transition: 1s ease;
         backface-visibility: hidden;
+        border-radius: 15px;
         &.hide{
             animation: away .6s ease forwards;
             @keyframes away {
@@ -457,6 +493,7 @@ onMounted(() => {
   function playIntro () {
     document.body.style.overflow = 'auto'
     // scroll to center svg
+
     polyfill()
     scrollIntoView(document.querySelector('.loader-svg') as Element, {
       behavior: 'auto',
@@ -476,19 +513,26 @@ onMounted(() => {
     const topPath = document.querySelector('#loader-path-top')
     const bottomPath = document.querySelector('#loader-path-bottom')
     const circlePath = document.querySelector('#loader-path-circle')
-    const introOverlay = document.querySelector('#intro-overlay-loader')
+    const introOverlay = document.querySelector('#intro-overlay-loader') as HTMLElement
+    const loaderSVG = document.querySelector('.loader-svg') as HTMLElement
     // begin animation, setting each one active after the one before has finished
+    loaderSVG?.classList.add('enlarge')
     circlePath?.classList.add('active')
     circlePath?.addEventListener('animationend', () => {
       topPath?.classList.add('active')
       bottomPath?.classList.add('active')
       topPath?.addEventListener('animationend', () => {
         introOverlay?.classList.add('hide')
+        loaderSVG.style.transition = 'transform .6s ease-in-out'
+        loaderSVG?.classList.remove('enlarge')
         introOverlay?.addEventListener('animationend', () => {
+          introOverlay.style.display = 'none'
           // end of animation, restore styles and toggle state
           document.querySelector('.hamburglar')?.classList.remove('hide')
           document.body.style.removeProperty('overflow')
-          document.querySelector('.intro-card-inner')?.classList.toggle('active')
+          setTimeout(() => {
+            document.querySelector('.intro-card-inner')?.classList.toggle('active')
+          }, 300)
           store.commit('setActivated')
           document.querySelector('.intro-card')?.addEventListener('click', () => {
             document.querySelector('.intro-card-inner')?.classList.toggle('active')
