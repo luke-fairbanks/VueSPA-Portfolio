@@ -40,7 +40,7 @@
 <script lang="ts">
 export default {
   created () {
-    document.title = 'My Mission'
+    document.title = 'My Mission | LF'
   }
 }
 </script>

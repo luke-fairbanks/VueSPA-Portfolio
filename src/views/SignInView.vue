@@ -18,7 +18,7 @@ export default {
     }
   },
   created () {
-    document.title = 'Sign In'
+    document.title = 'Sign In | LF'
   }
 }
 </script>

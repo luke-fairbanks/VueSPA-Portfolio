@@ -20,7 +20,7 @@ export default {
     SkeletonLoaderVue
   },
   created () {
-    document.title = 'Accomplishments'
+    document.title = 'Accomplishments | LF'
   }
 }
 </script>

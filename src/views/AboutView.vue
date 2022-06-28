@@ -7,7 +7,7 @@
 <script lang="ts">
 export default {
   created () {
-    document.title = 'About'
+    document.title = 'About | LF'
   }
 }
 </script>

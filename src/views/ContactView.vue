@@ -9,7 +9,7 @@ export default {
     ContactFormVue
   },
   created () {
-    document.title = 'Contact'
+    document.title = 'Contact | LF'
   }
 }
 </script>
