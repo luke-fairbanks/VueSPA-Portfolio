@@ -96,7 +96,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&display=swap');
 
 .hamburglar {
     transform: scale(1);
@@ -697,7 +696,7 @@ export default {
     color: var(--main-accent);
     font-size: 85px;
     filter: drop-shadow(2px 2px 0px black);
-    font-weight: bold;
+    font-weight: 900;
 }
 .link-wrapper div a::before{
     content: "";
@@ -738,7 +737,7 @@ export default {
   color: var(--main-accent);
 }
 .link-wrapper .home-link.router-link-active i{
-  filter: drop-shadow(4px 2px 1px var(--main-contrast-compliment));
+  filter: drop-shadow(4px 2px 0px var(--main-contrast-compliment));
 }
 
 @media (max-width:1000px) {

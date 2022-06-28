@@ -3,7 +3,7 @@
         <p class="contact-intro" > Send me a message! </p>
         <div class="envelope-container">
             <input id="flap" type="checkbox">
-            <label class="flap" for="flap"></label>
+            <label class="flap" for="flap" />
             <div class="envelope-back"></div>
             <div class="card">
                 <div class="form-wrapper">

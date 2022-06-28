@@ -62,24 +62,19 @@
                     </div>
                 </div>
                 <div class="intro-card-back">
-                    <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                        <svg id="Layer_2" class="loader-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 137 136">
-                            <defs>
-                                <linearGradient id="New_Gradient_Swatch_1" x1="29" y1="72.88" x2="110" y2="72.88" gradientTransform="matrix(1, 0, 0, 1, 0, 0) rotate(45)" gradientUnits="userSpaceOnUse"><stop offset=".02" stop-color="#8a7bd0"/><stop offset=".25" stop-color="#7b7de0"/><stop offset=".42" stop-color="#7b7de0"/><stop offset=".73" stop-color="#ff674d"/><stop offset=".94" stop-color="#de7560"/><stop offset="1" stop-color="#d57a66"/></linearGradient>
-                                <filter id="drop-shadow-1" filterUnits="userSpaceOnUse"><feOffset dx="2" dy="2"/><feGaussianBlur result="blur" stdDeviation="5"/><feFlood flood-color="#000" flood-opacity=".7"/><feComposite in2="blur" operator="in"/><feComposite in="SourceGraphic"/></filter>
-                                <linearGradient id="linear-gradient" x1="24.57" y1="61.04" x2="111.1" y2="61.04" gradientTransform="matrix(1, 0, 0, 1, 0, 0) rotate(45)" gradientUnits="userSpaceOnUse"><stop offset=".02" stop-color="#8a7bd0"/><stop offset=".25" stop-color="#7b7de0"/><stop offset=".42" stop-color="#7b7de0"/><stop offset=".73" stop-color="#ff674d"/><stop offset=".94" stop-color="#de7560"/><stop offset="1" stop-color="#d57a66"/></linearGradient>
-                                <filter id="drop-shadow-2" filterUnits="userSpaceOnUse"><feOffset dx="2" dy="2"/><feGaussianBlur result="blur-2" stdDeviation="5"/><feFlood flood-color="#000" flood-opacity=".7"/><feComposite in2="blur-2" operator="in"/><feComposite in="SourceGraphic"/></filter>
-                                <linearGradient id="New_Gradient_Swatch_1-2" gradientTransform="rotate(10)" x1="13.59" y1="65.92" x2="119.48" y2="65.92" xlink:href="#New_Gradient_Swatch_1"/>
-                                <filter id="drop-shadow-3" filterUnits="userSpaceOnUse"><feOffset dx="2" dy="2"/><feGaussianBlur result="blur-3" stdDeviation="5"/><feFlood flood-color="#000" flood-opacity=".7"/><feComposite in2="blur-3" operator="in"/><feComposite in="SourceGraphic"/></filter>
-                                <linearGradient id="New_Gradient_Swatch_1-3" x1="21" y1="71" x2="21" y2="71" xlink:href="#New_Gradient_Swatch_1"/>
-                                <filter id="drop-shadow-4" filterUnits="userSpaceOnUse"><feOffset dx="2" dy="2"/><feGaussianBlur result="blur-4" stdDeviation="5"/><feFlood flood-color="#000" flood-opacity=".7"/><feComposite in2="blur-4" operator="in"/><feComposite in="SourceGraphic"/></filter>
-                            </defs>
-                            <g id="Layer_1-2">
-                                <path class="cls-2" id="loader-path-bottom" d="M104,88c-.42-1.94-1.24-4.86-3-8-6.87-12.29-21.23-15.98-33-19-7.38-1.89-18.74-3.93-33-3"/>
-                                <path class="cls-1" id="loader-path-top" d="M105,87c.26-3.68,.15-9.1-2-15-6.27-17.22-24.57-23.92-33-27-18.82-6.89-35.81-4.01-44-2"/>
-                                <path class="cls-3" id="loader-path-circle" d="M83,24c3.84,1.17,13.36,4.62,21,14,1.18,1.45,7.29,9.15,9,20,3.27,20.7-10.5,46.21-33,53-15.52,4.68-29.3-1.32-33-3-3.84-1.74-14.01-6.51-21-18-7.83-12.86-6.51-25.65-6-30,.6-5.09,2.29-17.82,13-28,9.74-9.26,27.04-16.53,33-11,11.15,10.33-27.98,55.58-15,72,4.56,5.76,16.78,9.54,52-2"/>
-                            </g>
-                        </svg>
+                <!-- <?xml version="1.0" encoding="UTF-8"?> -->
+                <svg id="Layer_2" class="loader-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 105.89 105.67">
+                    <defs>
+                        <linearGradient id="linear-gradient" x1="43.02" y1="73.31" x2="79.21" y2="37.12" gradientTransform="matrix(1, 0, 0, 1, 0, 0)" gradientUnits="userSpaceOnUse"><stop offset=".02" stop-color="#8a7bd0"/><stop offset=".24" stop-color="#7b7de0"/><stop offset=".28" stop-color="#837bd6"/><stop offset=".34" stop-color="#9977bd"/><stop offset=".42" stop-color="#be7294"/><stop offset=".52" stop-color="#f0695c"/><stop offset=".53" stop-color="#f66957"/><stop offset=".72" stop-color="#ff674d"/><stop offset=".8" stop-color="#fb876c"/><stop offset=".96" stop-color="#f2d9bc"/><stop offset="1" stop-color="#f1ecce"/></linearGradient>
+                        <linearGradient id="linear-gradient-2" x1="42.77" y1="62.06" x2="76.68" y2="28.15" xlink:href="#linear-gradient"/>
+                        <linearGradient id="linear-gradient-3" x1="15.08" y1="89.81" x2="89.59" y2="15.3" xlink:href="#linear-gradient"/>
+                    </defs>
+                    <g id="Layer_1-2">
+                        <path class="cls-2" id="loader-path-bottom" d="M93.41,74.92c1.08-3.97,2.06-10.34-1-16-3.59-6.64-11.24-8.5-25-12-3.67-.93-11.07-2.64-21.5-3.5-10.19-.84-18.78-.52-25,0"/>
+                        <path class="cls-1" id="loader-path-top" d="M95.41,71.92c.06-6.97-1.49-12.33-3-16-7.84-19-28.29-25.5-33-27-6.57-2.09-11.98-2.52-18-3-10.76-.86-19.76,.02-26,1"/>
+                        <path class="cls-3" id="loader-path-circle" d="M69.41,10.92c3.84,1.17,13.36,4.62,21,14,1.18,1.45,7.29,9.15,9,20,3.27,20.7-10.5,46.21-33,53-15.52,4.68-29.3-1.32-33-3-3.84-1.74-14.01-6.51-21-18-7.83-12.86-6.51-25.65-6-30,.6-5.09,2.29-17.82,13-28C29.08,9.73,46.33,2.37,52.41,7.92c11.16,10.17-26.16,53.74-13,71,7.04,9.24,26.26,7.94,51,1"/>
+                    </g>
+                </svg>
                 <div class="intro-overlay-loader" id="intro-overlay-loader"></div>
                 </div>
             </div>
@@ -177,24 +172,27 @@
     justify-content: center;
     align-items: center;
     .loader-svg{
-        height: 70%;
-        width: 70%;
+        height: 60%;
+        width: 60%;
         z-index: 6;
-        filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
+        filter: drop-shadow(2px 2px 10px rgba(0, 0, 0, 0.7));
+        $path-top-length: 104.8;
+        $path-bottom-length: 91.8;
+        $path-circle-length: 405.8;
         &.enlarge{
             transform: scale(1.5);
         }
         #loader-path-top{
-            stroke-dashoffset: 104.5;
-            stroke-dasharray: 104.5;
+            stroke-dashoffset: $path-top-length;
+            stroke-dasharray: $path-top-length;
             &.active{
-                animation: stroke1 forwards cubic-bezier(0.77, 0.12, 0.43, 0.9) .5s;
+                animation: stroke1 forwards cubic-bezier(0.77, 0.12, 0.43, 0.9) .7s;
                 @keyframes stroke1 {
                     50%{
                         stroke-dashoffset: 0;
                     }
                     51%{
-                        stroke-dashoffset: 209;
+                        stroke-dashoffset: calc($path-top-length * 2);
                     }
                     100%{
                         stroke-dashoffset: 140;
@@ -204,26 +202,26 @@
         }
 
         #loader-path-bottom{
-            stroke-dashoffset: 82;
-            stroke-dasharray: 82;
+            stroke-dashoffset: $path-bottom-length;
+            stroke-dasharray: $path-bottom-length;
             &.active{
-                animation: stroke2 forwards cubic-bezier(0.77, 0.12, 0.43, 0.9) .5s;
+                animation: stroke2 forwards cubic-bezier(0.77, 0.12, 0.43, 0.9) .7s;
                 @keyframes stroke2 {
                     50%{
                         stroke-dashoffset: 0;
                     }
                     51%{
-                        stroke-dashoffset: 164;
+                        stroke-dashoffset: calc($path-bottom-length * 2);
                     }
                     100%{
-                        stroke-dashoffset: 102;
+                        stroke-dashoffset: 115;
                     }
                 }
             }
         }
         #loader-path-circle{
-            stroke-dashoffset: 408.2;
-            stroke-dasharray: 408.2;
+            stroke-dashoffset: $path-circle-length;
+            stroke-dasharray: $path-circle-length;
             &.active{
                 animation: stroke3 1.5s forwards cubic-bezier(0.4, 0, 0.2, 1);
                 @keyframes stroke3 {
@@ -234,28 +232,21 @@
             }
         }
         .cls-1{
-            // filter:url(#drop-shadow-2);
-            stroke:url(#linear-gradient);
+            stroke:url(#linear-gradient-2);
         }
-        .cls-1,.cls-2,.cls-3,.cls-4{
-            fill:none;stroke-width:12px;
+        .cls-1,.cls-2{
+            stroke-width:11px;
+        }
+        .cls-1,.cls-2,.cls-3{
+            fill:none;stroke-linecap:round;
         }
         .cls-1,.cls-3{
             stroke-miterlimit:10;
-        }
-        .cls-2{
-            // filter:url(#drop-shadow-1);
-            stroke:url(#New_Gradient_Swatch_1);
-        }
-        .cls-1,.cls-2,.cls-3{
-            stroke-linecap:round;
-        }
-        .cls-2{
-            stroke-linejoin:round;
+        }.cls-2{
+            stroke:url(#linear-gradient);stroke-linejoin:round;
         }
         .cls-3{
-            // filter:url(#drop-shadow-3);
-            stroke:url(#New_Gradient_Swatch_1-2);
+            stroke:url(#linear-gradient-3);stroke-width:12px;
         }
     }
     .intro-overlay-loader{
