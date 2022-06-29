@@ -7,6 +7,7 @@ import store from './store'
 import emailjs from 'emailjs-com'
 
 import { initializeApp } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -25,6 +26,19 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig)
+
+// check if user is logged in and set store.state.loggedIn
+export const auth = getAuth()
+if (auth.currentUser) {
+  store.commit('setLoggedIn')
+}
+auth.onAuthStateChanged(user => {
+  if (user) {
+    store.commit('setLoggedIn')
+  } else {
+    store.commit('setLoggedOut')
+  }
+})
 
 emailjs.init('7OjaYnu6LRvIPrAVl')
 

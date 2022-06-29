@@ -512,6 +512,7 @@ import router from '@/router'
 import PostModal from './PostModal.vue'
 import ImageCarousel from './ImageCarousel.vue'
 import UpdateModal from './UpdateModal.vue'
+import store from '@/store'
 
 // Define props
 const props = defineProps<{
@@ -525,12 +526,15 @@ onBeforeMount(async () => {
 
 // Check if logged in
 const auth = await getAuth()
-let loggedIn: boolean
-if (auth.currentUser) {
-  loggedIn = true
-} else {
-  loggedIn = false
-}
+const loggedIn = store.state.loggedIn
+
+// let loggedIn: boolean
+// if (auth.currentUser) {
+//   loggedIn = true
+// } else {
+//   loggedIn = false
+// }
+
 // Log out user
 function logout () {
   signOut(auth).then(() => {

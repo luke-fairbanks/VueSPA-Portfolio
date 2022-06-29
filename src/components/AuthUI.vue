@@ -21,8 +21,10 @@ h1{
 </style>
 <script setup lang="ts">
 import router from '@/router'
+import store from '@/store'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { ref } from 'vue'
+
 const email = ref('')
 const password = ref('')
 const errMsg = ref()
@@ -33,6 +35,7 @@ function signIn () {
       const user = userCredential.user
       console.log(user, 'signed in!')
       router.push('/')
+      store.commit('setLoggedIn', true)
     })
     .catch(error => {
       switch (error.code) {
