@@ -110,10 +110,9 @@
 }
 
 .intro-card{
-   height: 50%;
    max-width: 55vw;
    min-width: 704px;
-   min-height: 360px;
+   height: 360px;
    background-color: transparent ;
    position: relative;
    color: var(--main-text-color);
