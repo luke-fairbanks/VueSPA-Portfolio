@@ -296,7 +296,7 @@
 
    border-radius: 100%;
 
-   background-image: url(../assets/images/card-pic.png);
+   background-image: url(../assets/images/card-pic.webp);
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
@@ -452,6 +452,7 @@
         min-width: 0;
         width: 80%;
         max-width: fit-content;
+        height: auto;
         .right-col{
             flex-direction: row;
             column-gap: 1em;
