@@ -242,7 +242,9 @@
         .cls-1,.cls-3{
             stroke-miterlimit:10;
         }.cls-2{
-            stroke:url(#linear-gradient);stroke-linejoin:round;
+            stroke:url(#linear-gradient);
+            stroke-linejoin:round;
+            stroke-width: 10px;
         }
         .cls-3{
             stroke:url(#linear-gradient-3);stroke-width:12px;
