@@ -232,8 +232,6 @@
         }
         .cls-1{
             stroke:url(#linear-gradient-2);
-        }
-        .cls-1,.cls-2{
             stroke-width:11px;
         }
         .cls-1,.cls-2,.cls-3{
