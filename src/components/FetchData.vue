@@ -369,7 +369,7 @@
     border-right: none !important;
     text-align: center !important;
     .item::before{
-      border-right: none;
+      border-right: none !important;
     }
   }
   .right{
