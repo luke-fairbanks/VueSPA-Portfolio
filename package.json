@@ -1,6 +1,6 @@
 {
-  "name": "lukef-vue-portfolio",
-  "version": "0.1.0",
+  "name": "Luke Fairbanks Portfolio",
+  "version": "1.0.0",
   "engines": {
     "node": ">=8.10.0"
   },
