@@ -12,14 +12,15 @@ export async function fetchData (toDoc: string) {
 }
 
 // Send data to Firestore
-export async function postData (toDoc:string, title:string, titleLink: string, desc: string, year: number, skills: Array<string>, imageNames: Array<string>) {
+export async function postData (toDoc:string, title:string, titleLink: string, desc: string, year: number, skills: Array<string>, imageNames: Array<string>, githubLink = '') {
   const docData = {
     title: title,
     link: titleLink,
     description: desc,
     year: year,
     skills: skills,
-    imageNames: imageNames
+    imageNames: imageNames,
+    githubLink: githubLink
   }
   const docRef = await addDoc(collection(db, toDoc), docData)
   const updateRef = doc(db, toDoc, docRef.id)
@@ -31,13 +32,14 @@ export async function postData (toDoc:string, title:string, titleLink: string, d
 }
 
 // Update data to firestore
-export async function updateData (toDoc:string, title:string, titleLink: string, desc: string, year: BigInteger, skills: Array<string>, postId: string) {
+export async function updateData (toDoc:string, title:string, titleLink: string, desc: string, year: BigInteger, skills: Array<string>, postId: string, githubLink = '') {
   const docData = {
     title: title,
     link: titleLink,
     description: desc,
     year: year,
-    skills: skills
+    skills: skills,
+    githubLink: githubLink
   }
   const docRef = doc(db, toDoc, postId)
   await updateDoc(docRef, docData)

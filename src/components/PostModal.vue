@@ -12,6 +12,10 @@
             <input type="text" name="title" id="title" v-model="title" required />
             <label for="titleLink" placeholder='url'>Link</label>
             <input type="url" name="titleLink" id="titleLink" v-model="titleLink" />
+            <div v-if="$props.doc === 'my-work'" style="display:flex; flex-direction:column">
+              <label for="githubLink" placeholder="github link">Repo</label>
+              <input type="url" name="githubLink" id="githubLink" v-model="githubLink" />
+            </div>
             <label for="description">Description</label>
             <textarea rows="10" name="description" v-model.trim="description"/>
             <div class="year-skill-wrapper">
@@ -52,6 +56,7 @@ const description = ref('')
 const year = ref(2000)
 const skillList = ref('')
 const titleLink = ref('')
+const githubLink = ref('')
 const form = document.getElementById('postForm') as HTMLFormElement
 
 function submitData () {
@@ -65,13 +70,14 @@ function submitData () {
   if (skillList.value) {
     skills = skillList.value.split(',').map((x: string) => x.trim())
   }
-  postData(props.doc, title.value, titleLink.value, description.value, year.value, skills, imageNames).then(() => {
+  postData(props.doc, title.value, titleLink.value, description.value, year.value, skills, imageNames, githubLink.value).then(() => {
     modalActive.value = !modalActive.value
     title.value = ''
     description.value = ' '
     year.value = 2000
     skillList.value = ''
     titleLink.value = ''
+    githubLink.value = ''
     emit('refreshDom')
   })
 }

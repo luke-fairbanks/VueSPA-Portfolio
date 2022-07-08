@@ -11,14 +11,19 @@
     <div class="post-wrapper">
       <div v-for="(post,index) in posts" :key="index+posts.length" class="item-wrapper" :class="(index+1)%2==0 ? 'right' : 'left'">
         <div class="item" :id="post.title">
-          <a v-if="post.link" :href="post.link" target="_blank">
-          <h2 class="title">
-            {{ post.title }}
-          </h2>
-          </a>
-          <h2 v-else class="title">
-            {{ post.title }}
-          </h2>
+          <div class="title-wrapper">
+            <a v-if="post.link" :href="post.link" target="_blank">
+            <h2 class="title">
+              {{ post.title }}
+            </h2>
+            </a>
+            <h2 v-else class="title">
+              {{ post.title }}
+            </h2>
+            <a v-if="$props.doc === 'my-work' && post.githubLink && posts.githubLink !== ''" :href="post.githubLink" target="_blank" class="github-link">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
           <div class="image-wrapper" v-if="post.imageNames.length != 0">
             <ImageCarousel v-if="post.imageNames.length>1" :images="post.imageNames" :dataIndex="index" @image-press="displayOverlay" v-bind:id="index"></ImageCarousel>
             <div v-else class="single-image">
@@ -96,6 +101,22 @@
   a{
     text-decoration: none;
   }
+  .title-wrapper{
+    display: flex;
+    align-items: center;
+    column-gap: .35em;
+    .github-link{
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+      cursor: pointer;
+      filter: drop-shadow(1px 1px 0px var(--main-contrast));
+      i{
+        font-size: 1.5em;
+        color: var(--main-light-color);
+      }
+    }
+  }
   .right{
     // margin-left: 50%;
     text-align: left;
@@ -114,6 +135,11 @@
         left: 0;
         border-left: 2px dashed var(--main-accent);
         z-index: -1;
+      }
+      .title-wrapper{
+        .title{
+          margin-left: 1.5em;
+        }
       }
     }
     .item:target{
@@ -195,6 +221,12 @@
         border-right: 2px dashed var(--main-accent);
         z-index: -1;
       }
+      .title-wrapper{
+        flex-direction: row-reverse;
+        .title{
+          margin-right: 1.5em;
+        }
+      }
     }
     .item:target{
       border: 3px solid var(--main-light-color);
@@ -264,7 +296,7 @@
       width: 100%;
       .image{
         height: 100%;
-        width: 100%;
+        width: 94%;
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -297,7 +329,6 @@
       .title{
         margin-bottom: .5em;
         color: var(--main-contrast);
-        margin-inline: 1.5em;
       }
       .description{
         margin-bottom: .5em;
@@ -388,6 +419,14 @@
     .year-left,
     .year-right{
       display: none;
+    }
+    .title-wrapper{
+      justify-content: center;
+      flex-direction: row-reverse !important;
+      .title{
+          margin-right: 0 !important;
+          margin-left: 0 !important;
+        }
     }
   }
   .post-wrapper .item-wrapper .item{

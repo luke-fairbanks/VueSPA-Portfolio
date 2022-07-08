@@ -12,6 +12,10 @@
                 <input type="text" name="title" id="title" v-model="title" />
                 <label for="titleLink" placeholder='url'>Link</label>
                 <input type="url" name="titleLink" id="titleLink" v-model="titleLink" />
+                <div v-if="$props.doc === 'my-work'" style="display:flex; flex-direction:column">
+                  <label for="githubLink" placeholder="github link">Repo</label>
+                  <input type="url" name="githubLink" id="githubLink" v-model="githubLink" />
+                </div>
                 <label for="description">Description</label>
                 <textarea rows="10" name="description" v-model.trim="description"/>
                 <div class="year-skill-wrapper">
@@ -54,6 +58,7 @@ const description = ref(props.post.description)
 const year = ref(props.post.year)
 const skillList = ref(props.post.skills as string + ' ')
 const titleLink = ref(props.post.link)
+const githubLink = ref(props.post.githubLink)
 const form = document.getElementById('postForm') as HTMLFormElement
 
 // TODO: figure out a solution for editing uploaded photos.
@@ -70,7 +75,7 @@ function startUpdate () {
   if (skillList.value) {
     skills = skillList.value.split(',').map((x: string) => x.trim())
   }
-  updateData(props.doc, title.value, titleLink.value, description.value, year.value, skills, props.post.docId).then(() => {
+  updateData(props.doc, title.value, titleLink.value, description.value, year.value, skills, props.post.docId, githubLink.value).then(() => {
     modalActive.value = !modalActive.value
     emit('refreshDom')
   })
