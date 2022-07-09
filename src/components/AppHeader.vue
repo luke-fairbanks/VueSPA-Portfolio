@@ -635,6 +635,7 @@ export default {
   .flag-wrapper{
     display: flex;
     align-items: center;
+    z-index: 10;
     a{
       display: flex;
       flex-direction: row;
