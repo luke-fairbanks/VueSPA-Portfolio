@@ -6,18 +6,18 @@
     <div class="overlay-image-wrapper">
       <div class="overlay-bkg"></div>
       <div class="overlay-exit">X</div>
-      <div class="overlay-image"></div>
+      <img class="overlay-image" />
     </div>
     <div class="post-wrapper">
       <div v-for="(post,index) in posts" :key="index+posts.length" class="item-wrapper" :class="(index+1)%2==0 ? 'right' : 'left'">
         <div class="item" :id="post.title">
           <div class="title-wrapper">
             <a v-if="post.link" :href="post.link" target="_blank">
-            <h2 class="title">
+            <h2 class="title title-link">
               {{ post.title }}
             </h2>
             </a>
-            <h2 v-else class="title">
+            <h2 v-else class="title" style="cursor:default">
               {{ post.title }}
             </h2>
             <a v-if="$props.doc === 'my-work' && post.githubLink && posts.githubLink !== ''" :href="post.githubLink" target="_blank" class="github-link">
@@ -116,6 +116,37 @@
         color: var(--main-light-color);
       }
     }
+    .title-link:hover::after,
+    .github-link:hover::after{
+      opacity: .8;
+      transform: scale(1);
+    }
+    .title-link::after,
+    .github-link::after{
+      // tooltip on hover
+      content: "visit project";
+      position: absolute;
+      top: 5px;
+      width: max-content;
+      padding-inline: .2em;
+      background: var(--main-bkg-dark);
+      opacity: 0;
+      transition: .2s ease;
+      border-radius: 3px;
+      font-size: 17px;
+      font-weight: 100;
+      color: var(--main-light-color);
+      transform: scale(.8);
+      &:hover{
+        opacity: .8;
+      }
+    }
+    .github-link::after{
+      content: "view code";
+      right: 0;
+      top: -3px;
+    }
+
   }
   .right{
     // margin-left: 50%;
@@ -139,6 +170,13 @@
       .title-wrapper{
         .title{
           margin-left: 1.5em;
+        }
+        .title-link::after{
+          left: -100px;
+
+        }
+        .github-link::after{
+          left: 30px
         }
       }
     }
@@ -225,6 +263,12 @@
         flex-direction: row-reverse;
         .title{
           margin-right: 1.5em;
+        }
+        .title-link:after{
+          right: -100px;
+        }
+        .github-link::after{
+          right: 30px
         }
       }
     }
@@ -427,11 +471,22 @@
           margin-right: 0 !important;
           margin-left: 0 !important;
         }
+      .title-link::after{
+        right: -100px !important;
+        left: auto !important;
+      }
+      .github-link::after{
+        left: -88px !important;
+      }
     }
   }
   .post-wrapper .item-wrapper .item{
     background-color: transparent;
     width: 100%;
+  }
+  .overlay-image-wrapper .overlay-image{
+    height: auto !important;
+    width: 80vw;
   }
 }
 .overlay-image-wrapper{
@@ -506,15 +561,12 @@
     z-index: 2;
   }
   .overlay-image{
-    width: 80vw;
+    // width: 80vw;
     height: 45vw;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%) scale(.7);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
     z-index: 3;
     opacity: .5;
     transition: visibility 0s, transform .3s, opacity .3s ease;
@@ -613,13 +665,17 @@ function deleteItem (post: any) {
 }
 
 // function for showing overlay image
+
 function displayOverlay (image: Element) {
   const overlay = document.querySelector('.overlay-image-wrapper') as HTMLElement
   const overlayImage = document.querySelector('.overlay-image') as HTMLElement
   overlay.classList.add('visible')
-  const randomAnimation = `animation${Math.floor(Math.random() * 4) + 1}`
+  // Possibility to randomize animations, just uncomment the following line
+  // I removed this feature because I thought it was too much motion and a little buggy on safari
+  // const randomAnimation = `animation${Math.floor(Math.random() * 4) + 1}`
+  const randomAnimation = 'animation1'
   overlayImage.classList.add(randomAnimation)
-  overlayImage.style.backgroundImage = image.style.backgroundImage
+  overlayImage.src = image.style.backgroundImage.slice(5, -2)
   setTimeout(() => {
     document.querySelectorAll('.overlay-bkg, .overlay-exit').forEach((item) => {
       item.addEventListener('click', function () {
