@@ -45,10 +45,10 @@ div{
   top: 0;
   z-index: 0;
   a {
-    color: var(--main-light-color);
+    color: whitesmoke;
     font-size: 1.5em;
     position: relative;
-    border-bottom: 2px solid var(--main-accent);
+    border-bottom: 2px solid var(--main-light-color);
     text-decoration: none;
     &::after {
     --scale: 0;
@@ -58,7 +58,7 @@ div{
     right: 0;
     top: 10%;
     height: 90%;
-    z-index: 0;
+    z-index: -1;
     opacity: .7;
     // background: linear-gradient(135deg, rgb(115, 250, 200), rgb(0, 190, 225));
     background: linear-gradient(45deg, var(--main-contrast), var(--main-accent));
