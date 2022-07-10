@@ -1,4 +1,4 @@
-import { getFirestore, collection, getDocs, DocumentData, addDoc, doc, onSnapshot, deleteDoc, updateDoc, SnapshotOptions } from 'firebase/firestore'
+import { getFirestore, collection, getDocs, DocumentData, addDoc, doc, onSnapshot, deleteDoc, updateDoc, SnapshotOptions, query, orderBy } from 'firebase/firestore'
 import { getStorage, getDownloadURL, ref, getBlob, StorageReference, uploadBytes, listAll, deleteObject } from 'firebase/storage'
 import { app } from '@/main'
 import $, { post } from 'jquery'
@@ -7,7 +7,7 @@ const db = getFirestore(app)
 
 // Fetching data
 export async function fetchData (toDoc: string) {
-  const querySnapshot = await getDocs(collection(db, toDoc))
+  const querySnapshot = await getDocs(query(collection(db, toDoc), orderBy('year', 'desc')))
   return querySnapshot
 }
 
