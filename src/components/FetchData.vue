@@ -475,6 +475,9 @@
         right: -100px !important;
         left: auto !important;
       }
+      .github-link{
+        display: none;
+      }
       .github-link::after{
         left: -88px !important;
       }
