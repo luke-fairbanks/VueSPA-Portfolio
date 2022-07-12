@@ -484,6 +484,7 @@ onBeforeMount(() => {
   document.querySelector('#app')?.classList.remove('overflow-x-hidden')
   if (store.state.cardAnimaionActivated === false) {
     document.body.style.overflow = 'hidden'
+    document.querySelector('.hamburglar')?.classList.add('hide')
   }
 })
 
