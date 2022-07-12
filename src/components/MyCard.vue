@@ -63,7 +63,7 @@
                 </div>
                 <div class="intro-card-back">
                 <!-- <?xml version="1.0" encoding="UTF-8"?> -->
-                <svg id="Layer_2" class="loader-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 105.89 105.67">
+                <svg id="Layer_2 loader-svg" class="loader-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 105.89 105.67">
                     <defs>
                         <linearGradient id="linear-gradient" x1="43.02" y1="73.31" x2="79.21" y2="37.12" gradientTransform="matrix(1, 0, 0, 1, 0, 0)" gradientUnits="userSpaceOnUse"><stop offset=".02" stop-color="#8a7bd0"/><stop offset=".24" stop-color="#7b7de0"/><stop offset=".28" stop-color="#837bd6"/><stop offset=".34" stop-color="#9977bd"/><stop offset=".42" stop-color="#be7294"/><stop offset=".52" stop-color="#f0695c"/><stop offset=".53" stop-color="#f66957"/><stop offset=".72" stop-color="#ff674d"/><stop offset=".8" stop-color="#fb876c"/><stop offset=".96" stop-color="#f2d9bc"/><stop offset="1" stop-color="#f1ecce"/></linearGradient>
                         <linearGradient id="linear-gradient-2" x1="42.77" y1="62.06" x2="76.68" y2="28.15" xlink:href="#linear-gradient"/>
@@ -488,16 +488,23 @@ onMounted(() => {
     document.body.style.overflow = 'auto'
     // scroll to center svg
 
-    polyfill()
-    scrollIntoView(document.querySelector('.loader-svg') as Element, {
-      behavior: 'auto',
-      block: 'center',
-      inline: 'center'
-    })
-    // document.querySelector('.loader-svg')?.scrollIntoView({
+    // polyfill()
+    // scrollIntoView(document.querySelector('.loader-svg') as Element, {
+    //   behavior: 'auto',
     //   block: 'center',
     //   inline: 'center'
     // })
+    document.querySelector('.loader-svg')?.scrollIntoView({
+      block: 'center',
+      inline: 'center'
+    })
+    // // add hash to url
+    // location.hash = '#loader-svg'
+    // // remove hash from url
+    // setTimeout(() => {
+    //   history.pushState(null, '', ' ')
+    // }, 1000)
+
     // hide scrollbar and hamburger menu
     document.querySelector('.hamburglar')?.classList.add('hide')
     document.body.style.overflow = 'hidden'
