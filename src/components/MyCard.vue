@@ -481,6 +481,9 @@ import { onBeforeMount, onMounted, onUnmounted } from 'vue'
 import { scrollIntoView, polyfill } from 'seamless-scroll-polyfill'
 onBeforeMount(() => {
   document.querySelector('#app')?.classList.remove('overflow-x-hidden')
+  if (store.state.cardAnimaionActivated === false) {
+    document.body.style.overflow = 'hidden'
+  }
 })
 
 onMounted(() => {
@@ -488,22 +491,13 @@ onMounted(() => {
     document.body.style.overflow = 'auto'
     // scroll to center svg
 
-    // polyfill()
-    // scrollIntoView(document.querySelector('.loader-svg') as Element, {
-    //   behavior: 'auto',
-    //   block: 'center',
-    //   inline: 'center'
-    // })
-    document.querySelector('.loader-svg')?.scrollIntoView({
+    polyfill()
+    // window.SVGElement.prototype.scrollIntoView = (window.HTMLElement || window.Element).prototype.scrollIntoView
+    scrollIntoView(document.querySelector('.intro-card-back') as Element, {
+      behavior: 'auto',
       block: 'center',
       inline: 'center'
     })
-    // // add hash to url
-    // location.hash = '#loader-svg'
-    // // remove hash from url
-    // setTimeout(() => {
-    //   history.pushState(null, '', ' ')
-    // }, 1000)
 
     // hide scrollbar and hamburger menu
     document.querySelector('.hamburglar')?.classList.add('hide')
@@ -518,7 +512,9 @@ onMounted(() => {
     const loaderSVG = document.querySelector('.loader-svg') as HTMLElement
     // begin animation, setting each one active after the one before has finished
     loaderSVG?.classList.add('enlarge')
-    circlePath?.classList.add('active')
+    setTimeout(() => {
+      circlePath?.classList.add('active')
+    }, 250)
     circlePath?.addEventListener('animationend', () => {
       topPath?.classList.add('active')
       bottomPath?.classList.add('active')
@@ -528,11 +524,12 @@ onMounted(() => {
         loaderSVG?.classList.remove('enlarge')
         introOverlay?.addEventListener('animationend', () => {
           introOverlay.style.display = 'none'
-          // end of animation, restore styles and toggle state
+          // end of animation, restore styles, scroll to top, and toggle state
           document.querySelector('.hamburglar')?.classList.remove('hide')
           document.body.style.removeProperty('overflow')
           setTimeout(() => {
             document.querySelector('.intro-card-inner')?.classList.toggle('active')
+            document.body.scrollTop = 0
           }, 300)
           store.commit('setActivated')
           document.querySelector('.intro-card')?.addEventListener('click', () => {
