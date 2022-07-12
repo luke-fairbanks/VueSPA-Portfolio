@@ -22,7 +22,12 @@ export default {
   created () {
     document.title = 'My Work | LF'
     document.querySelector('meta[name="description"]')?.setAttribute('content', 'My Work')
+  },
+  beforeMount () {
     document.querySelector('#app')?.classList.add('overflow-x-hidden')
+  },
+  unmounted () {
+    document.querySelector('#app')?.classList.remove('overflow-x-hidden')
   }
 }
 </script>
