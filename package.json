@@ -25,6 +25,7 @@
     "gsap": "^3.10.4",
     "jquery": "^3.6.0",
     "seamless-scroll-polyfill": "^2.2.0",
+    "smoothscroll-polyfill": "^0.4.4",
     "url-loader": "^4.1.1",
     "vue": "^3.2.13",
     "vue-js-modal": "^2.0.1",
@@ -35,6 +36,7 @@
   "devDependencies": {
     "@types/gsap": "^3.0.0",
     "@types/jquery": "^3.5.14",
+    "@types/smoothscroll-polyfill": "^0.3.1",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-babel": "~5.0.0",

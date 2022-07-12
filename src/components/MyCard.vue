@@ -479,6 +479,7 @@
 import store from '@/store'
 import { onBeforeMount, onMounted, onUnmounted } from 'vue'
 import { scrollIntoView, polyfill } from 'seamless-scroll-polyfill'
+import smoothscroll from 'smoothscroll-polyfill'
 onBeforeMount(() => {
   document.querySelector('#app')?.classList.remove('overflow-x-hidden')
   if (store.state.cardAnimaionActivated === false) {
@@ -491,10 +492,16 @@ onMounted(() => {
     document.body.style.overflow = 'auto'
     // scroll to center svg
 
-    polyfill()
-    // window.SVGElement.prototype.scrollIntoView = (window.HTMLElement || window.Element).prototype.scrollIntoView
-    scrollIntoView(document.querySelector('.intro-card-back') as Element, {
-      behavior: 'auto',
+    // polyfill()
+    // // window.SVGElement.prototype.scrollIntoView = (window.HTMLElement || window.Element).prototype.scrollIntoView
+    // scrollIntoView(document.querySelector('.intro-card-back') as Element, {
+    //   behavior: 'auto',
+    //   block: 'center',
+    //   inline: 'center'
+    // })
+    smoothscroll.polyfill()
+    document.querySelector('.intro-card-back')?.scrollIntoView({
+      behavior: 'smooth',
       block: 'center',
       inline: 'center'
     })
@@ -514,7 +521,7 @@ onMounted(() => {
     loaderSVG?.classList.add('enlarge')
     setTimeout(() => {
       circlePath?.classList.add('active')
-    }, 750)
+    }, 250)
     circlePath?.addEventListener('animationend', () => {
       topPath?.classList.add('active')
       bottomPath?.classList.add('active')
