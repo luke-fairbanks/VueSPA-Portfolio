@@ -68,7 +68,6 @@ html, body{
     height: 100vh;
     overflow: visible;
     scroll-behavior: smooth;
-    overflow-x: hidden;
     // scroll-padding-top: 7rem;
     // overflow-x: hidden;
     // scrollbar-gutter: stable both-edges;

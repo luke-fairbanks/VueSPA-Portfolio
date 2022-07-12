@@ -22,7 +22,7 @@ export default {
   created () {
     document.title = 'Accomplishments | LF'
   },
-  beforeMount () {
+  mounted () {
     document.querySelector('#app')?.classList.add('overflow-x-hidden')
   },
   unmounted () {
