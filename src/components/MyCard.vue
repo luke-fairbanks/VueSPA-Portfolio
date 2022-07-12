@@ -494,7 +494,7 @@ onMounted(() => {
     polyfill()
     // window.SVGElement.prototype.scrollIntoView = (window.HTMLElement || window.Element).prototype.scrollIntoView
     scrollIntoView(document.querySelector('.intro-card-back') as Element, {
-      behavior: 'auto',
+      behavior: 'smooth',
       block: 'center',
       inline: 'center'
     })
@@ -514,7 +514,7 @@ onMounted(() => {
     loaderSVG?.classList.add('enlarge')
     setTimeout(() => {
       circlePath?.classList.add('active')
-    }, 250)
+    }, 750)
     circlePath?.addEventListener('animationend', () => {
       topPath?.classList.add('active')
       bottomPath?.classList.add('active')
