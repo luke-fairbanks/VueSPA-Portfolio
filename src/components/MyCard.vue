@@ -494,7 +494,7 @@ onMounted(() => {
     polyfill()
     // window.SVGElement.prototype.scrollIntoView = (window.HTMLElement || window.Element).prototype.scrollIntoView
     scrollIntoView(document.querySelector('.intro-card-back') as Element, {
-      behavior: 'smooth',
+      behavior: 'auto',
       block: 'center',
       inline: 'center'
     })
