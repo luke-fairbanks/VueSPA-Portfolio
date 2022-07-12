@@ -21,6 +21,10 @@ export default {
   },
   created () {
     document.title = 'Accomplishments | LF'
+    document.querySelector('#app')?.classList.add('overflow-x-hidden')
+  },
+  unmounted () {
+    document.querySelector('#app')?.classList.remove('overflow-x-hidden')
   }
 }
 </script>

@@ -13,6 +13,9 @@ export default defineComponent({
   },
   created () {
     document.title = 'Luke Fairbanks Portfolio'
+  },
+  unmounted () {
+    document.querySelector('#app')?.classList.remove('overflow-x-hidden')
   }
 })
 </script>

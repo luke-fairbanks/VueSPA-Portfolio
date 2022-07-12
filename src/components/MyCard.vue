@@ -477,8 +477,11 @@
 
 <script setup lang="ts">
 import store from '@/store'
-import { onMounted } from 'vue'
+import { onBeforeMount, onMounted, onUnmounted } from 'vue'
 import { scrollIntoView, polyfill } from 'seamless-scroll-polyfill'
+onBeforeMount(() => {
+  document.querySelector('#app')?.classList.remove('overflow-x-hidden')
+})
 
 onMounted(() => {
   function playIntro () {
@@ -546,5 +549,8 @@ onMounted(() => {
       document.querySelector('.intro-card-inner')?.classList.toggle('active')
     })
   }
+})
+onUnmounted(() => {
+  document.body.style.removeProperty('overflow')
 })
 </script>

@@ -2,6 +2,7 @@ import { getFirestore, collection, getDocs, DocumentData, addDoc, doc, onSnapsho
 import { getStorage, getDownloadURL, ref, getBlob, StorageReference, uploadBytes, listAll, deleteObject } from 'firebase/storage'
 import { app } from '@/main'
 import $, { post } from 'jquery'
+import Compressor from 'compressorjs'
 // Initialize Firebase
 const db = getFirestore(app)
 
@@ -64,14 +65,22 @@ export function saveImages (data:FileList, toDoc: string) {
     const imageHexName = generateId(20)
     // get save path
     const imageSavePath = toDoc + '-img/' + imageHexName + '.' + data[i].name.split('.').pop()
-    const blob = data[i].slice(0, data[i].size, data[i].type)
-    const imgFile = new File([blob], imageSavePath)
-    uploadBytes(ref(storage, 'portfolioImages/' + imageSavePath), imgFile)
-      .then((snapshot) => {
-        console.log('uploaded the file!')
-        console.log(snapshot)
-      })
+    // compress image
+    const compressor = new Compressor(data[i], {
+      quality: 0.6,
+      success: async (result: Blob) => {
+        // upload image to firestore
+        const uploadTask = await uploadBytes(ref(storage, 'portfolioImages/' + imageSavePath), result)
+      }
+    })
     imageNames.push(imageSavePath)
+    // const blob = data[i].slice(0, data[i].size, data[i].type)
+    // const imgFile = new File([blob], imageSavePath)
+    // uploadBytes(ref(storage, 'portfolioImages/' + imageSavePath), imgFile)
+    //   .then((snapshot) => {
+    //     console.log('uploaded the file!')
+    //     console.log(snapshot)
+    //   })
   }
   return imageNames
 }

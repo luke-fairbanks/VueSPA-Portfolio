@@ -86,6 +86,10 @@ header .flag-wrapper a{
     font-size: 40px;
 }
 
+#app.overflow-x-hidden{
+    overflow-x: hidden;
+}
+
 @media (hover:hover){
   html,body{
     overflow-y: overlay;
