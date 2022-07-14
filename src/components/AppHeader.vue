@@ -698,6 +698,7 @@ export default {
     font-size: 85px;
     filter: drop-shadow(2px 2px 0px black);
     font-weight: 900;
+    position: relative;
 }
 .link-wrapper div a::before{
     content: "";
