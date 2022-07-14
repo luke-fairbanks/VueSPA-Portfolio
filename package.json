@@ -30,7 +30,6 @@
     "vue": "^3.2.13",
     "vue-js-modal": "^2.0.1",
     "vue-router": "^4.0.3",
-    "vue-upload-component": "^3.1.2",
     "vuefire": "^2.2.5",
     "vuex": "^4.0.0"
   },

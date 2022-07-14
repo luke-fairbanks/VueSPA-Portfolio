@@ -18,6 +18,12 @@
   </Teleport>
 </template>
 
+<!-- TODO:
+    find a real file upload component
+    implement it
+    good luck.
+ -->
+
 <script setup lang="ts">
 import { ref, defineProps, defineEmits } from 'vue'
 import { saveImages, updateData } from '@/scripts/db'
