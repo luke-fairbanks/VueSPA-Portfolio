@@ -105,6 +105,7 @@
   animation: fade-in .5s;
   a{
     text-decoration: none;
+    position: relative;
   }
   .title-wrapper{
     display: flex;
@@ -378,6 +379,7 @@
       .title{
         margin-bottom: .5em;
         color: var(--main-contrast);
+        position: relative;
       }
       .description{
         margin-bottom: .5em;
