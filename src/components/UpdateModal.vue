@@ -6,7 +6,7 @@
         <div class="modal-background" @click="toggleModal"></div>
         <transition name="modal-animation-inner">
             <div v-show="modalActive" class="modal-inner">
-            <i @click="toggleModal" class="far fa-times-circle"></i>
+            <i @click="toggleModal" class="far fa-times-circle exit-modal-icon"></i>
             <form @submit.prevent="startUpdate" id="postForm" enctype="multipart/form-data" autocomplete="on">
                 <label for="title">Title</label>
                 <input type="text" name="title" id="title" v-model="title" />
@@ -142,7 +142,7 @@ function startUpdate () {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     background-color: var(--main-bkg-color);
     padding: 36px 16px;
-    i {
+    .exit-modal-icon {
       position: absolute;
       top: 15px;
       right: 15px;

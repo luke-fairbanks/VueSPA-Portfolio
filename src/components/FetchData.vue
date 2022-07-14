@@ -44,7 +44,7 @@
               <UpdateModal :doc="$props.doc" :post="post" :modal-active="false" @refresh-dom="domRefresh"></UpdateModal>
             </div>
             <div>
-              <UpdateImages :doc="$props.doc" :post="post" :modal-active="false" @refresh-dom="domRefresh"></UpdateImages>
+              <UpdateImages :doc="$props.doc" :post="post" :modal-active="false" :postIndex="index" @refresh-dom="domRefresh"></UpdateImages>
             </div>
             <div class="trash" @click="deleteItem(post)"><i class="fas fa-dumpster-fire"></i></div>
           </div>

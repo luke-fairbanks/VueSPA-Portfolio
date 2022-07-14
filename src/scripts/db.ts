@@ -150,3 +150,13 @@ export async function deletePost (postId: string, imageList: Array<string>, toDo
       console.log('Deleted item ' + postId)
     })
 }
+
+// deleting an image
+export async function deleteImage (imageName: string, toDoc: string) {
+  const storage = getStorage()
+  // const imgRef = ref(storage, 'portfolioImages/' + imageName)
+  // //check if image is in loadedImgSources
+  // const imgIndex = loadedImgSources.indexOf(imageName)
+  console.log(loadedImgSources)
+  console.log('image name ->' + imageName)
+}
