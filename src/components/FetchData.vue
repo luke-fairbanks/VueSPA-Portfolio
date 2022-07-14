@@ -43,6 +43,9 @@
             <div>
               <UpdateModal :doc="$props.doc" :post="post" :modal-active="false" @refresh-dom="domRefresh"></UpdateModal>
             </div>
+            <div>
+              <UpdateImages :doc="$props.doc" :post="post" :modal-active="false" @refresh-dom="domRefresh"></UpdateImages>
+            </div>
             <div class="trash" @click="deleteItem(post)"><i class="fas fa-dumpster-fire"></i></div>
           </div>
         </div>
@@ -617,6 +620,7 @@ import router from '@/router'
 import PostModal from './PostModal.vue'
 import ImageCarousel from './ImageCarousel.vue'
 import UpdateModal from './UpdateModal.vue'
+import UpdateImages from './UpdateImages.vue'
 import store from '@/store'
 
 // Define props
