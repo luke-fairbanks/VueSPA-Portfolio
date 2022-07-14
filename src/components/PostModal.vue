@@ -20,8 +20,8 @@
             <textarea rows="10" name="description" v-model.trim="description"/>
             <div class="year-skill-wrapper">
               <div>
-                <label for="year">Year</label>
-                <input type="number" min="2000" max="30000" step="1" name="year" id="year" v-model.number="year">
+                <label for="date">Date</label>
+                <input type="date" name="date" id="date">
               </div>
               <div>
                 <label for="skills">Skills (Comma seperated list)</label>
@@ -53,7 +53,6 @@ const toggleModal = () => {
 }
 const title = ref()
 const description = ref('')
-const year = ref(2000)
 const skillList = ref('')
 const titleLink = ref('')
 const githubLink = ref('')
@@ -70,11 +69,17 @@ function submitData () {
   if (skillList.value) {
     skills = skillList.value.split(',').map((x: string) => x.trim())
   }
-  postData(props.doc, title.value, titleLink.value, description.value, year.value, skills, imageNames, githubLink.value).then(() => {
+  const dateInput = document.getElementById('date') as HTMLInputElement
+  let dateValue = dateInput.valueAsDate
+  // if no date, set to abstract year, for empty date
+  if (dateValue === null) dateValue = new Date(1740, 6, 6)
+  // get the year, if no year set to abstract year
+  const year = dateValue.getFullYear() ?? 1740
+  postData(props.doc, title.value, titleLink.value, description.value, year, dateValue, skills, imageNames, githubLink.value).then(() => {
     modalActive.value = !modalActive.value
     title.value = ''
     description.value = ' '
-    year.value = 2000
+    dateInput.form?.reset()
     skillList.value = ''
     titleLink.value = ''
     githubLink.value = ''

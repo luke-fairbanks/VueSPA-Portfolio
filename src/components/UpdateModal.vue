@@ -20,9 +20,9 @@
                 <textarea rows="10" name="description" v-model.trim="description"/>
                 <div class="year-skill-wrapper">
                 <div>
-                    <label for="year">Year</label>
-                    <input type="number" min="2000" max="30000" step="1" name="year" id="year" v-model.number="year">
-                </div>
+                    <label for="date">Date</label>
+                    <input type="date" name="date" :value="formatDate(date)" @input="updateDate($event)">
+                  </div>
                 <div>
                     <label for="skills">Skills (Comma seperated list)</label>
                     <textarea name="skills" id="skills" cols="30" rows="5" v-model="skillList"></textarea>
@@ -47,15 +47,23 @@ const props = defineProps<{
   doc: string,
   post: any
 }>()
-
 const modalActive = ref(false)
 const toggleModal = () => {
   modalActive.value = !modalActive.value
 }
 
+function formatDate (d: { getTime: () => number; getTimezoneOffset: () => number; }) {
+  return d && new Date(d.getTime() - (d.getTimezoneOffset() * 60 * 1000)).toISOString().split('T')[0]
+}
+function updateDate (e: any) {
+  document.getElementById('date')?.setAttribute('value', formatDate(new Date(e.target.value)))
+  date = new Date(e.target.value)
+}
+
+const fullDate = new Date(props.post.date.toDate())
 const title = ref(props.post.title)
 const description = ref(props.post.description)
-const year = ref(props.post.year)
+let date = new Date(props.post.date.toDate()) // eslint-disable-line
 const skillList = ref(props.post.skills as string + ' ')
 const titleLink = ref(props.post.link)
 const githubLink = ref(props.post.githubLink)
@@ -75,14 +83,14 @@ function startUpdate () {
   if (skillList.value) {
     skills = skillList.value.split(',').map((x: string) => x.trim())
   }
-  updateData(props.doc, title.value, titleLink.value, description.value, year.value, skills, props.post.docId, githubLink.value).then(() => {
+  updateData(props.doc, title.value, titleLink.value, description.value, date.getFullYear(), date, skills, props.post.docId, githubLink.value).then(() => {
     modalActive.value = !modalActive.value
     emit('refreshDom')
   })
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .edit{
     cursor: pointer;
     &:hover{

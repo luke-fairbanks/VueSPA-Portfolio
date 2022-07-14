@@ -46,12 +46,14 @@
             <div class="trash" @click="deleteItem(post)"><i class="fas fa-dumpster-fire"></i></div>
           </div>
         </div>
-        <div class="year-right" v-if="(index+1)%2==0">
+        <div class="year-right" v-if="(index+1)%2==0 && post.year !== 1740">
           <span>{{ post.year }}</span>
         </div>
-        <div class="year-left" v-if="(index+1)%2!=0">
+        <div class="year-left" v-if="(index+1)%2!=0 && post.year !== 1740">
           <span>{{ post.year }}</span>
         </div>
+        <div class="year-fill-right" v-if="(index+1)%2==0 && post.year === 1740"></div>
+        <div class="year-fill-left" v-if="(index+1)%2!=0 && post.year === 1740"></div>
       </div>
     </div>
 </template>
@@ -437,6 +439,16 @@
  .year-right{
    right: 0;
  }
+ .year-fill-right,
+ .year-fill-left{
+  width: 50%;
+ }
+  .year-fill-right{
+    padding-right: 26px;
+  }
+  .year-fill-left{
+    padding-left: 25px;
+  }
 }
 @media (max-width: 500px) {
   .left{
@@ -601,7 +613,6 @@ import { defineProps, onBeforeMount, onMounted, ref } from 'vue'
 import { getAuth, signOut } from 'firebase/auth'
 import { gsap, snap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { app } from '@/main'
 import router from '@/router'
 import PostModal from './PostModal.vue'
 import ImageCarousel from './ImageCarousel.vue'
@@ -685,6 +696,13 @@ function displayOverlay (image: Element) {
         overlay.classList.remove('visible')
         overlayImage.classList.remove(randomAnimation)
       })
+    })
+    // listen for escape key to close overlay
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        overlay.classList.remove('visible')
+        overlayImage.classList.remove(randomAnimation)
+      }
     })
   }, 500)
 }

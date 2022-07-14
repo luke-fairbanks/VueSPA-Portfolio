@@ -8,17 +8,18 @@ const db = getFirestore(app)
 
 // Fetching data
 export async function fetchData (toDoc: string) {
-  const querySnapshot = await getDocs(query(collection(db, toDoc), orderBy('year', 'desc')))
+  const querySnapshot = await getDocs(query(collection(db, toDoc), orderBy('date', 'desc')))
   return querySnapshot
 }
 
 // Send data to Firestore
-export async function postData (toDoc:string, title:string, titleLink: string, desc: string, year: number, skills: Array<string>, imageNames: Array<string>, githubLink = '') {
+export async function postData (toDoc:string, title:string, titleLink: string, desc: string, year: number, date: Date, skills: Array<string>, imageNames: Array<string>, githubLink = '') {
   const docData = {
     title: title,
     link: titleLink,
     description: desc,
     year: year,
+    date: date,
     skills: skills,
     imageNames: imageNames,
     githubLink: githubLink
@@ -33,12 +34,13 @@ export async function postData (toDoc:string, title:string, titleLink: string, d
 }
 
 // Update data to firestore
-export async function updateData (toDoc:string, title:string, titleLink: string, desc: string, year: BigInteger, skills: Array<string>, postId: string, githubLink = '') {
+export async function updateData (toDoc:string, title:string, titleLink: string, desc: string, year: number, date: Date, skills: Array<string>, postId: string, githubLink = '') {
   const docData = {
     title: title,
     link: titleLink,
     description: desc,
     year: year,
+    date: date,
     skills: skills,
     githubLink: githubLink
   }
