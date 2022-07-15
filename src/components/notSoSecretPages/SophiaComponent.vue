@@ -1,9 +1,9 @@
 <template>
-    <div class="title">Here are some of my favorite memories</div>
     <div class="container">
         <span>Hey Soph<div class="hand-wave">👋</div></span>
         <button @click="$emit('logOut')" id="logOut"><i class="fas fa-sign-out-alt"></i></button>
     </div>
+    <div class="title">Here are some of my favorite memories</div>
 </template>
 <script setup lang="ts">
 import { defineEmits, onMounted } from 'vue'
@@ -59,6 +59,7 @@ onMounted(() => {
         background-color: var(--main-light-color);
         border: none;
         padding: 0.5em;
+        padding-inline: 1em;
         border-radius: 0.5em;
         cursor: pointer;
         transition: all 0.5s ease-in-out;
@@ -75,8 +76,9 @@ onMounted(() => {
     font-weight: bold;
     color: var(--main-text-color);
     text-decoration: underline;
-    text-underline-offset: 1px;
+    text-underline-offset: 8px;
     text-decoration-color: var(--main-accent);
+    margin-bottom: 3px;
 }
 
 </style>

@@ -31,7 +31,7 @@
             </div>
           </div>
           <div class="description">
-            <span class="year-mobile"> {{ post.year }}</span>
+            <span v-if="post.year !== 1740" class="year-mobile"> {{ post.year }}</span>
             {{ post.description }}
           </div>
           <div class="skill-wrapper">
@@ -482,6 +482,10 @@
  .post-wrapper {
     .year-left,
     .year-right{
+      display: none;
+    }
+    .year-fill-right,
+    .year-fill-left{
       display: none;
     }
     .title-wrapper{
