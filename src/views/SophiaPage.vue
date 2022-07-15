@@ -1,8 +1,8 @@
 <template>
-    <div v-if="!store.state.sophia.isSophia">
+    <div v-if="!$store.getters['sophia/isSophia']">
         <sophia-login @login-success="logIn"></sophia-login>
     </div>
-    <div v-if="store.state.sophia.isSophia">
+    <div v-if="$store.getters['sophia/isSophia']">
         <sophia-component @log-out="logOut"></sophia-component>
         <Suspense>
             <template #fallback>
@@ -31,12 +31,12 @@ export default {
   },
   created () {
     document.title = 'Sophia'
-    console.log(store.state.sophia.isSophia)
+    console.log(store.getters['sophia/isSophia'])
   },
   methods: {
     logOut () {
       store.commit('sophia/removeSophia')
-      console.log(store.state.sophia.isSophia)
+      console.log(store.getters['sophia/isSophia'])
       console.log('logged out')
     },
     logIn () {

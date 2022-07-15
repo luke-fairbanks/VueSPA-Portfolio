@@ -13,6 +13,11 @@ const sophia = {
     removeSophia (state: { isSophia: boolean }) {
       state.isSophia = false
     }
+  },
+  getters: {
+    isSophia: function (state: { isSophia: boolean }) {
+      return state.isSophia
+    }
   }
 }
 
@@ -42,7 +47,7 @@ export default createStore({
   actions: {
   },
   modules: {
-    sophia
+    sophia: sophia
   },
   plugins: [
     vuexLocal.plugin
