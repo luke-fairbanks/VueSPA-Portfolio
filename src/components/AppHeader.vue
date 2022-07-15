@@ -59,13 +59,20 @@
                 <router-link to="/" class="link-item home-link">
                   <i class="fas fa-id-card"></i>
                 </router-link>
+                <div v-if="$store.getters['sophia/isSophia']" class="sophia-log-out-wrapper">
+                  <button @click="removeSophia" id="logOut"><i class="fas fa-sign-out-alt"></i></button>
+                </div>
             </div>
         </div>
 </template>
 
 <script lang="ts">
 import $ from 'jquery'
+import store from '@/store'
 export default {
+  removeSophia () {
+    store.commit('sophia/removeSophia')
+  },
   mounted () {
     const trigger = $('#hamburger')
     let isClosed = true
@@ -80,6 +87,11 @@ export default {
         isClosed = false
         document.body.style.overflow = 'hidden'
         $('.menu-bg, .link-wrapper, .menu-burger').toggleClass('fs')
+        if ($('#logOut')) {
+          $('#logOut').on('click', function () {
+            burgerTime()
+          })
+        }
       } else {
         trigger.removeClass('is-open')
         trigger.addClass('is-closed')
@@ -772,4 +784,58 @@ export default {
     top: 25%;
   }
 }
+.sophia-log-out-wrapper{
+    display: flex;
+    justify-content: flex-start;
+    // padding-inline: 4em;
+    #logOut{
+        font-size: clamp(.4em, 2vw, .7em);
+        font-weight: bold;
+        color: crimson;
+        background-color: var(--main-light-color);
+        border: none;
+        padding: 0.5em;
+        padding-inline: 1em;
+        border-radius: 0.5em;
+        cursor: pointer;
+        transition: all 0.5s ease-in-out;
+        position: relative;
+        &:hover{
+            color: var(--main-light-color);
+            background-color: crimson;
+        }
+        &::before{
+            content:'';
+            display:block;
+            width:0;
+            height:0;
+            position:absolute;
+
+            border-top: clamp(8px, 3vw, 20px) solid transparent;
+            border-bottom: clamp(8px, 3vw, 20px) solid transparent;
+            border-right: clamp(8px, 3vw, 20px) solid var(--main-bkg-color);
+            left:110%;
+
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        &:after{
+            content: 'special soph log out';
+            position: absolute;
+            top: 0;
+            left: 110%;
+            height: 100%;
+            background-color: var(--main-bkg-color);
+            width: max-content;
+            transition: all 0.5s ease-in-out;
+            color: var(--main-light-color);
+            display: flex;
+            align-items: center;
+            padding-inline: 0.5em;
+            border-radius: 0.5em;
+            margin-left: 10px;
+        }
+    }
+}
+
 </style>
