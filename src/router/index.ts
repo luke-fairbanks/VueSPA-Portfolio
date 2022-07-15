@@ -39,6 +39,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/auth',
     name: 'auth',
     component: () => import('../views/SignInView.vue')
+  },
+  {
+    path: '/sophia',
+    name: 'sophia',
+    component: () => import('../views/SophiaPage.vue')
   }
 ]
 

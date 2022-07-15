@@ -1,4 +1,25 @@
 import { createStore } from 'vuex'
+import VuexPersistence from 'vuex-persist'
+
+const sophia = {
+  namespaced: true,
+  state: () => ({
+    isSophia: false
+  }),
+  mutations: {
+    setSophia (state: { isSophia: boolean }) {
+      state.isSophia = true
+    },
+    removeSophia (state: { isSophia: boolean }) {
+      state.isSophia = false
+    }
+  }
+}
+
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage,
+  modules: ['sophia']
+})
 
 export default createStore({
   state: {
@@ -21,5 +42,9 @@ export default createStore({
   actions: {
   },
   modules: {
-  }
+    sophia
+  },
+  plugins: [
+    vuexLocal.plugin
+  ]
 })
