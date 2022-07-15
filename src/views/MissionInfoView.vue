@@ -17,6 +17,7 @@
         max-width: 500px;
         text-align: center;
         position: fixed;
+        width: 80%;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -60,6 +61,14 @@
 export default {
   created () {
     document.title = 'My Mission | LF'
+  },
+  mounted () {
+    const body = document.querySelector('body') as HTMLElement
+    body.style.overflow = 'hidden'
+  },
+  unmounted () {
+    const body = document.querySelector('body') as HTMLElement
+    body.removeAttribute('style')
   }
 }
 </script>
