@@ -711,6 +711,7 @@ export default {
     filter: drop-shadow(2px 2px 0px black);
     font-weight: 900;
     position: relative;
+    font-style: italic;
 }
 .link-wrapper div a::before{
     content: "";
