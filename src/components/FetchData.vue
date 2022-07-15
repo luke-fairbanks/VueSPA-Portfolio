@@ -450,6 +450,8 @@
     display: flex;
     align-items: center;
     width: 50%;
+    display: flex;
+    justify-content: center;
     span{
       position: absolute;
     }
