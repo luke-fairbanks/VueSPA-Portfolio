@@ -74,7 +74,9 @@ onMounted(() => {
     font-size: 1.25em;
     font-weight: bold;
     color: var(--main-text-color);
-
+    text-decoration: underline;
+    text-underline-offset: 1px;
+    text-decoration-color: var(--main-accent);
 }
 
 </style>
