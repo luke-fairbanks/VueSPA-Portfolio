@@ -8,32 +8,29 @@
 </template>
 
 <style lang="scss" scoped>
-.main{
-    height: 75vh;
-   width: 50%;
-   max-width: 500px;
-   margin-inline: auto;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column;
-   position: absolute;
-   margin: auto;
-   right: 0; left: 0; top: 0; bottom: 0;
-   h3{
-       text-align: center;
+// center main in the screen
 
-    span{
-            color: var(--main-contrast);
-            text-shadow: var(--main-light-color) .5px .5px;
-            margin-bottom: 0px;
+.main{
+   // center the main content in the screen
+    position: relative;
+    h3{
+        max-width: 500px;
+        text-align: center;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        span{
+                color: var(--main-contrast);
+                text-shadow: var(--main-light-color) .5px .5px;
+                margin-bottom: 0px;
+        }
+        a{
+            color: var(--main-accent);
+            text-decoration-color: lighten(#7B7DE0, 10%);
+            text-decoration-thickness: 2px;
+        }
     }
-    a{
-        color: var(--main-accent);
-        text-decoration-color: lighten(#7B7DE0, 10%);
-        text-decoration-thickness: 2px;
-    }
-   }
    // pin message to bottom of screen
     .message{
         position: fixed;
