@@ -14,16 +14,13 @@
     </div>
 </template>
 
-<script setup lang="ts">
-import store from '@/store'
-</script>
-
 <script lang="ts">
 import FetchData from '@/components/FetchData.vue'
 import SkeletonLoaderVue from '@/components/SkeletonLoader.vue'
 import FooterMenuVue from '@/components/FooterMenu.vue'
 import sophiaLogin from '@/components/notSoSecretPages/SophiaLogin.vue'
 import sophiaComponent from '@/components/notSoSecretPages/SophiaComponent.vue'
+import store from '@/store'
 export default {
   components: {
     FetchData,
@@ -41,12 +38,10 @@ export default {
       store.commit('sophia/removeSophia')
       console.log(store.state.sophia.isSophia)
       console.log('logged out')
-      this.$forceUpdate()
     },
     logIn () {
       store.commit('sophia/setSophia')
       console.log('logged in')
-      this.$forceUpdate()
     }
   },
   mounted () {
