@@ -107,6 +107,8 @@ onMounted(() => {
     }
     .clue {
         visibility: hidden;
+        font-size: .9em;
+        color: var(--main-light-color);
     }
 }
 .confetti-origin {
