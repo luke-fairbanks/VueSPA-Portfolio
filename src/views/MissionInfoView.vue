@@ -1,7 +1,7 @@
 <template>
 <div class="main">
     <h3>
-        I am currently serving a mission for the <a target="_blank" href="https://www.churchofjesuschrist.org/comeuntochrist">Church of Jesus Christ of Latter Day Saints</a> in the <span>Costa Rica San José East Mission</span>.
+        I recently returned from serving a mission for the <a target="_blank" href="https://www.churchofjesuschrist.org/comeuntochrist">Church of Jesus Christ of Latter Day Saints</a> in the <span>Costa Rica San José East Mission</span>.
     </h3>
     <span class="message">If your name is SGL, press <router-link to="/sophia" class="link">here</router-link></span>
 </div>
