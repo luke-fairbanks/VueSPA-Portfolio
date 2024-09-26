@@ -26,12 +26,12 @@
                         <ul>
                             <li>
                                 <h3>
-                                    Aspiring software developer
+                                    Makeshift Full Stack Developer
                                 </h3>
                             </li>
                             <li>
                                 <h3>
-                                    Computer Science Student
+                                    Computer Science Student at Brigham Young University
                                 </h3>
                             </li>
                             <li>
@@ -39,11 +39,11 @@
                                     Entrepenuer
                                 </h3>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <h3>
                                     Athlete
                                 </h3>
-                            </li>
+                            </li> -->
                         </ul>
 
                     </div>
