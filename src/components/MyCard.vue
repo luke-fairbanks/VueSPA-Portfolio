@@ -31,7 +31,7 @@
                             </li>
                             <li>
                                 <h3>
-                                    Computer Science Student at Brigham Young University
+                                    Studying CS at BYU
                                 </h3>
                             </li>
                             <li>
@@ -39,11 +39,11 @@
                                     Entrepenuer
                                 </h3>
                             </li>
-                            <!-- <li>
+                            <li>
                                 <h3>
                                     Athlete
                                 </h3>
-                            </li> -->
+                            </li>
                         </ul>
 
                     </div>
