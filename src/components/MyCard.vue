@@ -296,7 +296,7 @@
 
    border-radius: 100%;
 
-   background-image: url(../assets/images/headshot-pic.png);
+   background-image: url(../assets/images/headshot-pic.jpeg);
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
