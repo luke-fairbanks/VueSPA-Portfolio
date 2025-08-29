@@ -59,9 +59,6 @@
                 <router-link to="/" class="link-item home-link">
                   <i class="fas fa-id-card"></i>
                 </router-link>
-                <div v-if="$store.getters['sophia/isSophia']" class="sophia-log-out-wrapper">
-                  <button @click="removeSophia" id="logOut"><i class="fas fa-sign-out-alt"></i></button>
-                </div>
             </div>
         </div>
 </template>
@@ -705,6 +702,7 @@ export default {
 
 .link-wrapper div a{
     font-family: 'Montserrat', sans-serif;
+    // font-family: 'Figtree', sans-serif;
     text-decoration: none;
     color: var(--main-accent);
     font-size: 85px;

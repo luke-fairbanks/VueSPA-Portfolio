@@ -62,7 +62,8 @@ html, body{
     box-sizing: border-box;
     background-color: var(--main-bkg-color);
     line-height: 1.75;
-    font-family: 'Josefin Sans', sans-serif;
+    // font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Figtree', sans-serif;
     color: var(--main-text-color);
     position: relative;
     height: 100vh;

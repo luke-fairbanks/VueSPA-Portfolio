@@ -1,7 +1,7 @@
 <template>
 <footer>
     <span>Luke Fairbanks</span>
-    <span>2022</span>
+    {{ new Date().getFullYear() }}
 </footer>
 </template>
 <style scoped lang="scss">
